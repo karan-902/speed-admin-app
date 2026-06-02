@@ -1,0 +1,117 @@
+@use "../../../assets/default.scss" as *;
+
+.modal {
+  .MuiBackdrop-root {
+    background-color: hsla(210, 4%, 70%, 0.4);
+  }
+
+  .MuiDialog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    outline: 0;
+  }
+
+  .MuiDialog-paper {
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.87);
+    box-shadow:
+      0 4px 4px -2px rgba(11, 37, 75, 0.12),
+      0 0 0 1px rgba(11, 37, 75, 0.08);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-y: auto;
+
+    max-width: 600px;
+    width: calc(100% - 64px);
+    max-height: calc(100% - 64px);
+    margin: 32px;
+    border-radius: 4px;
+
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .MuiDialogContent-root {
+    padding: 24px 30px;
+  }
+
+  .MuiDialogTitle-root {
+    display: flex;
+    align-items: center;
+    color: $darkIndigo;
+    justify-content: space-between;
+
+    .MuiIconButton-root {
+      color: #848b9e;
+      position: absolute;
+      right: 30px;
+      top: 15px;
+    }
+  }
+
+  .MuiDialogActions-root {
+    padding: 30px;
+  }
+
+  .form-modal {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  &.fullscreen-modal {
+    .MuiDialog-paper {
+      max-width: 100%;
+      width: 100%;
+      max-height: none;
+      height: 100%;
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+}
+
+.bulk-delete-modal {
+  .MuiDialog-paper {
+    width: 440px;
+    max-width: calc(100vw - 48px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      0 4px 24px rgba(10, 25, 62, 0.1),
+      0 0 0 1px rgba(10, 25, 62, 0.06);
+  }
+
+  .MuiDialogTitle-root {
+    padding: 12px 16px 0;
+    min-height: 44px;
+    .dialog-title {
+      display: none;
+    }
+  }
+
+  .MuiDialogContent-root {
+    padding: 0 !important;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+
+  .bdm-confirm {
+    padding: 8px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bdm-success {
+    padding: 16px 28px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

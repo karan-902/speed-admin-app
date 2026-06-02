@@ -1,0 +1,23 @@
+@use "./default.scss" as *;
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0px;
+  color: $darkIndigo;
+  font-family: Outfit-Regular;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  background-color: $paleGray;
+}
+#ecommerce {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,9 @@
+@use "../../../assets/default.scss" as *;
+.common-tooltip {
+  .MuiTooltip-tooltip {
+    background: $darkIndigo;
+    color: $white;
+    font-family: $fontOutfitSemiBold;
+    font-size: $font12;
+  }
+}

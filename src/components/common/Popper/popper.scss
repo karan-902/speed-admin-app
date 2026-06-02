@@ -1,0 +1,109 @@
+@use "../../../assets/default.scss" as *;
+.custom-popper {
+  z-index: 2;
+
+  .popper-arrow {
+    font-size: 8px;
+    width: 3em;
+    height: 3em;
+    position: absolute;
+    left: 0px;
+    transform: translate3d(58px, 0px, 0px);
+
+    &:before {
+      content: "";
+      margin: auto;
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+  }
+
+  &[data-popper-placement*="bottom"] {
+    margin-top: 3px !important;
+
+    .popper-arrow {
+      top: 0px;
+      left: 12px;
+      margin-top: -0.9em;
+      width: 3em;
+      height: 1em;
+
+      &:before {
+        border-width: 0px 1em 1em 1em;
+        border-color: transparent transparent rgb(255, 255, 255) transparent;
+      }
+    }
+  }
+
+  &[data-popper-placement*="top"] {
+    margin-bottom: 3px !important;
+
+    .popper-arrow {
+      bottom: 0;
+      left: 0;
+      margin-bottom: -0.9em;
+      width: 3em;
+      height: 1em;
+
+      &:before {
+        border-width: 1em 1em 0 1em;
+        border-color: rgb(255, 255, 255) transparent transparent transparent;
+      }
+    }
+  }
+
+  &[data-popper-placement*="right"] {
+    margin-left: 3px !important;
+
+    .popper-arrow {
+      left: 0;
+      margin-left: -0.9em;
+      height: 3em;
+      width: 1em;
+
+      &:before {
+        border-width: 1em 1em 1em 0px;
+        border-color: transparent rgb(255, 255, 255) transparent transparent;
+      }
+    }
+  }
+
+  &[data-popper-placement*="left"] {
+    margin-right: 3px !important;
+
+    .popper-arrow {
+      right: 0;
+      margin-right: -0.9em;
+      height: 3em;
+      width: 1em;
+
+      &:before {
+        border-width: 1em 0px 1em 1em;
+        border-color: transparent transparent transparent rgb(255, 255, 255);
+      }
+    }
+  }
+
+  .MuiBox-root {
+    color: #848b9e;
+    font-size: 16px;
+    word-break: break-word;
+    padding: 10px;
+    max-width: 400px;
+    min-width: 140px;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow:
+      0 0 7px 3px #0b254b1f,
+      0 0 0 1px #0b254b14;
+    .MuiButtonBase-root {
+      padding: 2px 35px 2px 16px;
+      font-family: $fontOutfitMedium;
+      //   width: 120px;
+      min-height: 33px;
+      font-size: $font14;
+    }
+  }
+}

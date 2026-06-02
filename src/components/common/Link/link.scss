@@ -1,0 +1,16 @@
+@use "../../../assets/default.scss" as *;
+.link {
+  font-family: $fontOutfitSemiBold;
+  font-size: 16px;
+  text-decoration: none;
+  color: $primaryBlue;
+  &.breadcrumb-link {
+    font-family: $fontOutfitRegular;
+    font-size: 14px;
+  }
+  &.nav-link {
+    font-family: $fontOutfitRegular;
+    font-size: 14px;
+    margin-left: 8px;
+  }
+}

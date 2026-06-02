@@ -1,0 +1,136 @@
+$whiteSmoke: #f5f5f5;
+$greyText: #848b9e;
+$primaryBlue: #2a67ff;
+$primaryBlueHover: #2758d4;
+$lightCyanBlue: #e4e9ee;
+$topicalBlue: #cbdafa;
+$paleRed: #e74c3c;
+$brinkPink: #f3a69e;
+$lightRed: #ffe8e6;
+$paleGray: #f7fafc;
+$darkIndigo: #0a193e;
+$white: #fff;
+$lightGrey: #d8dce1;
+$sunFlowerYellow: #f9df00;
+$lightSunFlowerYellow: #fef9cc;
+$lightYellow: #f5f3e3;
+$goldenRod: #f1c40f;
+$greenishTeal: #2ecc71;
+$backgroundHover: #f1f4f6;
+$lightBlue: #1976d214;
+$aliceBlue: #f0f7ff;
+$black: #000000;
+$darkBlue: #041f61;
+$cardBorder: #f6f3f3;
+$outlineBlue: #bfd1ff;
+$cardDarkBg: #f0f5fa;
+$success: #e2f3e9;
+$error: #fd371e;
+$errorBg: #fff6f5;
+$errorBorder: #ffe4e1;
+$BTCCardBg: #fef6eb;
+$BTCCardBorder: #fde9ce;
+$USDTCardBg: #f1f8f6;
+$USDTCardBorder: #d5ebe5;
+$USDCCardBg: #eef5fc;
+$USDCCardBorder: #d4e5f7;
+$USDCBtn: #2775ca;
+$USDCBtnHover: #1f65b0;
+$BTCBtn: #f7931a;
+$USDTBtn: #53ae94;
+$USDTBtnHover: #47947e;
+$primaryOrang: #f7931a;
+$BTCCardHover: #f18e16;
+$font8: 8px;
+$font9: 9px;
+$font10: 10px;
+$font11: 11px;
+$font12: 12px;
+$font13: 13px;
+$font14: 14px;
+$font15: 15px;
+$font16: 16px;
+$font18: 18px;
+$font20: 20px;
+$font22: 22px;
+$font24: 24px;
+$font28: 28px;
+$font30: 30px;
+$font32: 32px;
+$font34: 34px;
+$font36: 36px;
+$font56: 56px;
+$font44: 44px;
+$font45: 45px;
+$font58: 58px;
+
+$fontRegular: Inter-Regular;
+$fontBold: Inter-Bold;
+$fontSemiBold: Inter-SemiBold;
+$fontMedium: Inter-Medium;
+$fontLight: Inter-Light;
+$fontOutfitLight: Outfit-Light;
+$fontOutfitRegular: Outfit-Regular;
+$fontOutfitSemiBold: Outfit-SemiBold;
+$fontOutfitBold: Outfit-Bold;
+$fontOutfitMedium: Outfit-Medium;
+@font-face {
+  font-family: Inter-Regular;
+  src: url(./fonts/inter/Inter-Regular.woff2) format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Inter-SemiBold;
+  src: url(./fonts/inter/Inter-SemiBold.woff2) format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Inter-Light;
+  src: url(./fonts/inter/Inter-Light.woff2) format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Inter-Medium;
+  src: url(./fonts/inter/Inter-Medium.woff2) format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Inter-Bold;
+  src: url(./fonts/inter/Inter-Bold.woff2) format("woff2");
+  font-display: swap;
+}
+// outfit
+
+@font-face {
+  font-family: Outfit-Regular;
+  src: url(./fonts/outfit/Outfit-Regular.ttf) format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Outfit-SemiBold;
+  src: url(./fonts/outfit/Outfit-SemiBold.ttf) format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Outfit-Light;
+  src: url(./fonts/outfit/Outfit-Light.ttf) format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Outfit-Medium;
+  src: url(./fonts/outfit/Outfit-Medium.ttf) format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Outfit-Bold;
+  src: url(./fonts/outfit/Outfit-Bold.ttf) format("truetype");
+  font-display: swap;
+}

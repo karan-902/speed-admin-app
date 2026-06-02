@@ -1,0 +1,26 @@
+.caption {
+  font-family: Outfit-Regular;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+  caption-side: bottom;
+  &.not-found {
+    text-align: center !important;
+    background-color: #fff;
+    padding: 125px 0 25px !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &.table-caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+}

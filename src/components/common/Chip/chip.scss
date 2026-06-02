@@ -1,0 +1,32 @@
+@use "../../../assets/default.scss" as *;
+
+.common-chip {
+    max-width: 120px !important;
+    border-radius: 20px !important;
+    height: 26px !important;
+
+    .MuiChip-label {
+        font-family: $fontOutfitSemiBold;
+        font-size: $font12;
+        padding: 0 10px;
+    }
+
+    &.product-spotlight-chip {
+        background-color: rgba($greenishTeal, 0.1) !important;
+        border: 1px solid rgba($greenishTeal, 0.2) !important;
+        border-radius: 20px !important;
+        .MuiChip-label { color: $greenishTeal; }
+    }
+
+    &.available-chip {
+        background-color: rgba($greenishTeal, 0.1) !important;
+        border: 1px solid rgba($greenishTeal, 0.2) !important;
+        .MuiChip-label { color: $greenishTeal; }
+    }
+
+    &.archived-chip {
+        background-color: $paleGray !important;
+        border: 1px solid $lightCyanBlue !important;
+        .MuiChip-label { color: $greyText; }
+    }
+}

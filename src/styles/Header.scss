@@ -1,0 +1,41 @@
+@use "../assets/default.scss" as *;
+
+.ecommerce-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1111;
+  .ecommerce-header-container {
+    padding: 15px 18px;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $lightCyanBlue;
+  }
+}
+.header {
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: 11;
+  border-bottom: 1px solid $lightCyanBlue;
+  min-height: 0px;
+  .MuiContainer-root {
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+    .MuiPaper-root {
+      height: 56px;
+      background-color: #fff;
+      box-shadow: none;
+
+      .header-content {
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}

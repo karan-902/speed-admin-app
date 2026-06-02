@@ -1,0 +1,97 @@
+@use "../assets/default.scss" as *;
+
+.sidebar-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar-wrapper {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    .MuiPaper-root.MuiDrawer-paper {
+        background-color: $white !important;
+        border-right: 1px solid $lightCyanBlue !important;
+        width: 250px !important;
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+    }
+
+    // ── Logo area ──────────────────────────────────────────
+    .sidebar-logo-area {
+        padding: 18px 16px;
+        border-bottom: 1px solid $lightCyanBlue;
+        flex-shrink: 0;
+    }
+
+    .sidebar-logo-name {
+        color: $darkIndigo !important;
+        font-family: $fontOutfitSemiBold !important;
+        font-size: $font15 !important;
+        letter-spacing: 0.02em;
+    }
+
+    // ── Nav items ──────────────────────────────────────────
+    .nav-item.sidebar-nav-item {
+        border-radius: 0 !important;
+        height: 46px;
+        padding: 8px 16px !important;
+        margin-bottom: 0 !important;
+
+        .MuiListItemText-root .MuiTypography-root {
+            color: $darkIndigo !important;
+            font-family: $fontOutfitMedium !important;
+            font-size: $font14 !important;
+        }
+
+        .MuiListItemIcon-root svg {
+            color: $greyText !important;
+        }
+
+        &:hover {
+            background-color: $backgroundHover !important;
+
+            .MuiListItemIcon-root svg {
+                color: $darkIndigo !important;
+            }
+
+            .MuiListItemText-root .MuiTypography-root {
+                color: $darkIndigo !important;
+            }
+        }
+
+        &.sidebar-nav-active {
+            background-color: transparent !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            width: 100% !important;
+
+            .MuiListItemIcon-root svg {
+                color: $primaryBlue !important;
+            }
+
+            .MuiListItemText-root .MuiTypography-root {
+                color: $primaryBlue !important;
+                font-family: $fontOutfitSemiBold !important;
+            }
+        }
+    }
+
+    // ── Bottom section ─────────────────────────────────────
+    .sidebar-bottom {
+        border-top: 1px solid $lightCyanBlue !important;
+        padding: 8px 12px 16px !important;
+
+        .nav-item.sidebar-nav-item {
+            border-bottom: none !important;
+            border-radius: 8px !important;
+            margin: 0 !important;
+            width: 100% !important;
+        }
+    }
+}

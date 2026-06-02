@@ -1,0 +1,8 @@
+@use "../../../assets/default.scss" as *;
+.label {
+  .text {
+    font-size: 14px;
+    color: $greyText;
+    font-family: $fontOutfitMedium;
+  }
+}

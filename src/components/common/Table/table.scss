@@ -1,0 +1,80 @@
+@use "../../../assets/default.scss" as *;
+
+.table-header {
+    width: 100%;
+}
+
+.product-checkbox-col {
+    width: 52px !important;
+    max-width: 52px !important;
+    padding: 4px 8px !important;
+}
+
+.scroll-seek-row {
+    td {
+        padding: 10px 16px;
+    }
+
+    .scroll-seek-bar {
+        height: 14px;
+        border-radius: 4px;
+        background-color: $lightCyanBlue;
+        width: 55%;
+        opacity: 0.7;
+    }
+}
+
+.virtualize-wrapper {
+    position: relative;
+
+    .virtuoso-loader {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid #f2f5f7;
+        z-index: 10;
+    }
+}
+
+
+.table {
+    &.data-table {
+        &.has-data {
+            tbody {
+                height: 100%;
+            }
+        }
+        .MuiTableRow-root {
+            cursor: pointer;
+            background: #fff;
+            height: 50px;
+            transition: background-color 0.15s ease;
+            border-bottom: 1px solid #f2f5f7;
+            &.empty-row {
+                cursor: default;
+                &:hover {
+                    background-color: #fff !important;
+                }
+            }
+            &:hover {
+                background-color: #f0f7ff !important;
+            }
+        }
+
+        .MuiTableCell-body {
+            color: #0a193e;
+            font-size: 16px;
+            font-family: Outfit-Regular;
+        }
+        .MuiTableCell-root {
+            color: #0a193e;
+            font-size: 16px;
+            padding: 10px 15px;
+        }
+        &.MuiTableCell-head {
+            font-size: 14px;
+        }
+    }
+}

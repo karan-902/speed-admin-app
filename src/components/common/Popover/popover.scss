@@ -1,0 +1,48 @@
+@use "../../../assets/default.scss" as *;
+.common-popover {
+  &.product-archive-popover {
+    .MuiPopover-paper {
+      border-radius: 8px;
+      box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+      margin-left: -14px;
+      margin-top: 3px;
+      width: 180px;
+
+      .MuiList-root {
+        padding: 12px !important;
+        .MuiMenuItem-root {
+          color: #848b9e;
+          font-family: Outfit-Medium;
+          font-size: 14px;
+          height: 32px;
+          margin-bottom: 6px;
+          padding: 4px 6px;
+        }
+        &.MuiMenuItem-root:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  .MuiPopover-paper {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+    margin-left: -14px;
+    margin-top: 3px;
+
+    .MuiList-root {
+      padding: 12px !important;
+      .MuiMenuItem-root {
+        color: #848b9e;
+        font-family: Outfit-Medium;
+        font-size: 14px;
+        height: 32px;
+        margin-bottom: 6px;
+        padding: 4px 6px;
+      }
+      &.MuiMenuItem-root:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

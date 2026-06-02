@@ -1,0 +1,198 @@
+@use "../../../assets/default.scss" as *;
+.text {
+  letter-spacing: normal !important;
+  line-height: 1.5 !important;
+  color: $darkIndigo;
+  &.copy-text {
+    color: $white;
+  }
+  &.divider {
+    height: 30px;
+    padding-left: 19px;
+    border-left: 1px solid $lightCyanBlue;
+  }
+  &.spotlight {
+    color: $primaryBlue;
+    font-size: 14px;
+    font-family: $fontOutfitSemiBold;
+  }
+  &.unspotlight {
+    color: $sunFlowerYellow;
+    font-size: 14px;
+    font-family: $fontOutfitSemiBold;
+  }
+  &.border-bottom {
+    border-bottom: 1px solid #0000001f;
+  }
+  &.detail-id {
+    background-color: #f7fafc;
+    border: none;
+    border-radius: 3px;
+    color: #848b9e !important;
+    padding: 4px 14px;
+  }
+  &.mb-10 {
+    margin-bottom: 10px;
+  }
+  &.default-text {
+    color: $darkIndigo;
+    font-family: $fontOutfitRegular;
+  }
+  &.dialog-title {
+    font-family: $fontOutfitSemiBold;
+    font-size: $font18;
+  }
+  &.font-regular {
+    font-family: $fontOutfitRegular;
+  }
+  &.font-bold {
+    font-family: $fontOutfitBold;
+  }
+  &.font-SemiBold {
+    font-family: $fontOutfitSemiBold;
+  }
+  &.font-medium {
+    font-family: $fontOutfitMedium;
+  }
+  &.font-light {
+    font-family: $fontOutfitLight;
+  }
+  &.font15 {
+    font-size: $font15;
+  }
+  &.font14 {
+    font-size: $font14;
+  }
+  &.font16 {
+    font-size: $font16;
+  }
+  &.font12 {
+    font-size: $font12;
+  }
+  &.font18 {
+    font-size: $font18;
+  }
+  &.font20 {
+    font-size: $font20;
+  }
+  &.font24 {
+    font-size: $font24;
+  }
+  &.font28 {
+    font-size: $font28;
+  }
+
+  &.flex-text {
+    align-items: center;
+    display: flex;
+  }
+  &.grey-text {
+    color: $greyText;
+    font-family: $fontOutfitRegular;
+  }
+  &.profile-label {
+    min-width: 130px;
+    color: $greyText;
+    font-size: $font14;
+    font-family: $fontOutfitMedium;
+  }
+  &.profile-value {
+    color: $darkIndigo;
+    font-size: $font16;
+    font-family: $fontOutfitRegular;
+  }
+  &.bdm-title {
+    font-size: $font20 !important;
+    font-family: $fontOutfitBold !important;
+    color: $darkIndigo !important;
+    margin-bottom: 8px !important;
+    line-height: 1.3 !important;
+  }
+  &.bdm-description {
+    font-size: $font14 !important;
+    color: $greyText !important;
+    font-family: $fontOutfitRegular !important;
+    line-height: 1.6 !important;
+    margin-bottom: 16px !important;
+    .bdm-count {
+      color: $paleRed;
+      font-family: $fontOutfitSemiBold;
+    }
+  }
+  &.bdm-input-label {
+    width: 100%;
+    text-align: left;
+    font-size: $font13 !important;
+    color: $darkIndigo !important;
+    font-family: $fontOutfitMedium !important;
+    margin-bottom: 8px !important;
+    .bdm-keyword {
+      font-family: monospace;
+      font-size: $font12;
+      background-color: $lightCyanBlue;
+      color: $darkIndigo;
+      border-radius: 4px;
+      padding: 2px 7px;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+  }
+  &.bdm-notice-text {
+    font-size: $font13 !important;
+    color: $darkIndigo !important;
+    font-family: $fontOutfitRegular !important;
+    line-height: 1.5 !important;
+  }
+  &.bdm-success-title {
+    font-size: $font20 !important;
+    font-family: $fontOutfitBold !important;
+    color: $darkIndigo !important;
+    margin-bottom: 6px !important;
+    line-height: 1.3 !important;
+  }
+  &.bdm-success-sub {
+    font-size: $font14 !important;
+    color: $greyText !important;
+    font-family: $fontOutfitRegular !important;
+    line-height: 1.5 !important;
+  }
+  &.bulk-bar-label {
+    font-size: $font14 !important;
+    color: $darkIndigo !important;
+    font-family: $fontOutfitMedium !important;
+  }
+  &.sidebar-section-label {
+    font-size: $font11 !important;
+    color: $greyText !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: $fontOutfitSemiBold !important;
+    display: block;
+    padding: 0 10px;
+    margin-bottom: 4px !important;
+  }
+  &.section-title {
+    font-family: $fontOutfitSemiBold;
+    font-size: $font16;
+    color: $darkIndigo;
+    margin-bottom: 8px;
+  }
+}
+
+.selection-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 20px;
+  background-color: rgba(42, 103, 255, 0.1);
+  border: 1px solid rgba(42, 103, 255, 0.25);
+  color: $primaryBlue;
+  font-size: $font12;
+  font-family: $fontOutfitSemiBold;
+  line-height: 1;
+  vertical-align: middle;
+  letter-spacing: 0.01em;
+}

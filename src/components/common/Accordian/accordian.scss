@@ -1,0 +1,33 @@
+@use "../../../assets/default.scss" as *;
+.accordian-wrapper {
+  &.MuiAccordion-root {
+    box-shadow: none;
+  }
+  .MuiAccordionSummary-root:hover {
+    background-color: #f2f5f7;
+  }
+  .MuiAccordionSummary-root {
+    border-radius: 5px;
+    min-height: 32px;
+    font-family: $fontOutfitMedium;
+    .MuiAccordionSummary-content {
+      margin: 0;
+      .MuiTypography-root {
+        font-family: $fontOutfitMedium;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%;
+      }
+      .MuiSvgIcon-root {
+        width: 18px;
+        height: 18px;
+        fill: #667085;
+      }
+    }
+    .MuiAccordionSummary-expandIconWrapper svg {
+      height: 22px;
+      width: 22px;
+    }
+  }
+}

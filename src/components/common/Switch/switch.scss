@@ -1,0 +1,35 @@
+.common-switch {
+  &.product-spotlight-switch {
+    width: 46px;
+    height: 26px;
+    padding: 0;
+    display: flex;
+
+    .MuiSwitch-switchBase {
+      padding: 1px;
+
+      &.Mui-checked {
+        transform: translateX(20px);
+        color: #fff;
+
+        + .MuiSwitch-track {
+          background-color: #f9df00;
+          opacity: 1;
+        }
+      }
+    }
+
+    .MuiSwitch-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      box-shadow: none;
+    }
+
+    .MuiSwitch-track {
+      border-radius: 13px;
+      background-color: #e4e9ee;
+      opacity: 1;
+    }
+  }
+}

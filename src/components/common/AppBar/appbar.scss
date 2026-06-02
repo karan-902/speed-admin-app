@@ -1,0 +1,12 @@
+.appbar {
+  &.modal-app-bar {
+    .MuiToolbar-root {
+      height: 70px;
+    }
+  }
+  &.MuiPaper-root {
+    background-color: #fff;
+    border-bottom: 1px solid #e4e9ee;
+    box-shadow: none;
+  }
+}

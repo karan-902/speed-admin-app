@@ -1,0 +1,54 @@
+@use "../../../assets/default.scss" as *;
+
+.backdrop-loader {
+  z-index: 1201;
+  .MuiPaper-root {
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow:
+      0 4px 4px -2px rgba(11, 37, 75, 0.12),
+      0 0 0 1px rgba(11, 37, 75, 0.08);
+    .MuiCardMedia-root {
+      width: 84px;
+      height: 84px;
+      margin: 0 25px 10px;
+    }
+    .MuiCardContent-root {
+      padding: 0;
+      .grey-text {
+        color: #848b9e;
+        font-family: $fontOutfitSemiBold;
+      }
+    }
+  }
+  &.page-loader {
+    background-color: white;
+    .MuiPaper-root {
+      width: 200px;
+      height: 150px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: none;
+      .MuiCardMedia-root {
+        width: 84px;
+        height: 84px;
+        margin: 0 25px 10px;
+      }
+      .MuiCardContent-root {
+        padding: 0;
+        .grey-text {
+          color: #848b9e;
+          font-family: $fontOutfitSemiBold;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@use "../assets/default.scss" as *;
+
+.common-alert {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  font-size: $font14 !important;
+  font-family: $fontOutfitSemiBold !important;
+  padding: 4px 10px !important;
+  z-index: 99;
+  &.MuiAlert-standardError {
+    .MuiAlert-icon {
+      color: $paleRed !important;
+    }
+  }
+
+  &.MuiAlert-standardSuccess {
+    .MuiAlert-icon {
+      color: $greenishTeal !important;
+    }
+    background-color: $success;
+  }
+
+  &.MuiAlert-standardWarning {
+    .MuiAlert-icon {
+      color: $goldenRod !important;
+    }
+  }
+}

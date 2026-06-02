@@ -1,0 +1,7 @@
+@use "../../../assets/default.scss" as *;
+
+.component-loader {
+  &.product-create-loader {
+    margin-block: 200px;
+  }
+}

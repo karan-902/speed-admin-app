@@ -1,0 +1,38 @@
+@use "../../../assets/default.scss" as *;
+.MuiList-root {
+  padding: 0 !important;
+  .MuiListItem-root {
+    padding: 0;
+    .MuiListItemText-root {
+      .MuiTypography-root {
+        font-family: $fontOutfitMedium;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%;
+      }
+    }
+    .MuiListItemButton-root {
+      border-radius: 5px;
+      height: 32px;
+      padding: 6px 8px;
+      .MuiListItemIcon-root {
+        margin-right: 8px;
+        min-width: 18px;
+        .MuiSvgIcon-root {
+          width: 18px;
+          height: 18px;
+          fill: #667085;
+        }
+      }
+    }
+  }
+  .main-menu-accordian-list {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    padding: 0;
+  }
+}
