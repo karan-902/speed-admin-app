@@ -16,7 +16,7 @@ function PublicRoute() {
         <DiagonalDiv src={vector}>
           <Container customClass="ecommerce-container">
             <Box customClass="ecommerce-root-container">
-              <Box component={"main"} customClass="section-container">
+              <Box component={"main"} customClass="auth-section-container">
                 <Box customClass="main-logo-login">
                   <img src={logoWhite} alt="logo-white" />
                 </Box>

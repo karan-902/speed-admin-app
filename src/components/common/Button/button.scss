@@ -1,261 +1,332 @@
 @use "../../../assets/default.scss" as *;
 
 .common-button {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-top: 30px;
-  height: 54px;
-  padding: 8px 10px;
-  text-decoration: none !important;
-  color: $darkIndigo;
-  text-transform: none !important;
-  border: 1px solid transparent;
-  box-shadow:
-    0 4px 4px -2px rgba(11, 37, 75, 0.12),
-    0 0 0 1px rgba(11, 37, 75, 0.08);
-
-  font-size: 16px;
-  line-height: 1;
-  &.fullscreen-action-button {
-    width: 200px;
-    background-color: #2a67ff;
-    color: white;
-  }
-  &.button-with-icon {
-    min-width: 30px !important;
-    min-height: 20px;
-    padding: 0;
     display: flex;
-    justify-content: center;
-    box-shadow: none;
-  }
-  &.dots {
-    display: flex;
-    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 100%;
-    box-shadow: none;
-    .MuiButton-startIcon {
-      margin: 0;
-      width: 30px;
-      height: 30px;
-      svg {
-        font-size: 28px;
-      }
-    }
-  }
-  &.logout {
-    width: 30px;
-    height: 35px;
-    box-shadow: none;
-  }
-  &.default-user {
-    box-shadow: none;
-    min-width: 54px;
-    margin-top: -6px;
-  }
-
-  &.setting {
-    width: 30px;
-    height: 35px;
-
-    box-shadow: none;
-  }
-
-  &.login-button {
-    background-color: $primaryBlue;
-    .common-button-text {
-      color: $white;
-      font-weight: 500 !important;
-      font-family: $fontOutfitSemiBold !important;
-    }
-    .MuiButton-icon {
-      color: $white;
-    }
-  }
-
-  &.Mui-disabled {
-    .MuiTypography-root {
-      font-weight: 500 !important;
-      font-family: $fontOutfitSemiBold !important;
-    }
-    background-color: $lightGrey !important;
-    font-family: $fontOutfitSemiBold !important;
-    text-transform: none !important;
-    color: $white !important;
-  }
-
-  &.MuiButton-outlinedPrimary {
-    border: 1px solid #2a67ff;
-    color: #2a67ff !important;
-  }
-  &.button-create-submit {
-    background-color: #2a67ff;
-    .MuiTypography-root {
-      color: white;
-      font-family: $fontOutfitSemiBold;
-      font-size: $font18;
-    }
-    padding: 16px 22px;
-    display: flex;
-    width: 100%;
-    height: 36px;
-  }
-  &.button-create-unarchive {
+    margin-top: 30px;
+    height: 54px;
     padding: 8px 10px;
-    display: flex;
-    width: 150px;
-    height: 36px;
-    .MuiTypography-root {
-      font-size: 16px;
-      font-family: $fontOutfitSemiBold;
+    text-decoration: none !important;
+    color: $darkIndigo;
+    text-transform: none !important;
+    border: 1px solid transparent;
+    box-shadow:
+        0 4px 4px -2px rgba(11, 37, 75, 0.12),
+        0 0 0 1px rgba(11, 37, 75, 0.08);
+
+    font-size: 16px;
+    line-height: 1;
+    &.fullscreen-action-button {
+        width: 200px;
+        background-color: $primaryBlue;
+        color: $white;
+        .MuiButton-icon svg {
+            color: $white;
+        }
+        &:hover {
+            background-color: $primaryBlueHover;
+        }
     }
-  }
-  &.button-create {
-    margin-top: 0 !important;
+    &.button-with-icon {
+        min-width: 30px !important;
+        min-height: 20px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        box-shadow: none;
+    }
+    &.dots {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+        .MuiButton-startIcon {
+            margin: 0;
+            width: 30px;
+            height: 30px;
+            svg {
+                font-size: 28px;
+            }
+        }
+    }
+    &.logout {
+        width: 30px;
+        height: 35px;
+        box-shadow: none;
+    }
+    &.default-user {
+        box-shadow: none;
+        min-width: 54px;
+        margin-top: -6px;
+    }
+
+    &.setting {
+        width: 30px;
+        height: 35px;
+
+        box-shadow: none;
+    }
+
+    &.login-button {
+        background-color: $primaryBlue;
+        .common-button-text {
+            color: $white;
+            font-weight: 500 !important;
+            font-family: $fontOutfitSemiBold !important;
+        }
+        .MuiButton-icon {
+            color: $white;
+        }
+    }
+
+    &.Mui-disabled {
+        background-color: $paleGray !important;
+        border: 1px solid $lightCyanBlue !important;
+        text-transform: none !important;
+        box-shadow: none !important;
+        .common-button-text,
+        .MuiTypography-root {
+            color: $greyText !important;
+            // font-family: $fontOutfitSemiBold !important;
+        }
+        .MuiButton-icon,
+        .MuiButton-icon svg {
+            stroke: $lightGrey !important;
+        }
+    }
+
+    &.MuiButton-outlinedPrimary {
+        border: 1px solid $primaryBlue;
+        color: $primaryBlue !important;
+    }
+    &.button-create-submit {
+        background-color: $primaryBlue;
+        .MuiTypography-root {
+            color: $white;
+            font-family: $fontOutfitSemiBold;
+            font-size: $font18;
+        }
+        .MuiButton-icon svg {
+            color: $white;
+        }
+        padding: 16px 22px;
+        display: flex;
+        width: 100%;
+        height: 36px;
+        &:hover {
+            background-color: $primaryBlueHover;
+        }
+    }
+    &.button-create-unarchive {
+        padding: 8px 10px;
+        display: flex;
+        width: 150px;
+        height: 36px;
+        .MuiTypography-root {
+            font-size: 16px;
+            font-family: $fontOutfitSemiBold;
+        }
+    }
+    &.button-create {
+        margin-top: 0 !important;
+        padding: 0 16px;
+        width: auto !important;
+        height: 36px;
+        border: 1px solid $lightCyanBlue !important;
+        box-shadow: none !important;
+        border-radius: 8px;
+        color: $darkIndigo !important;
+        flex-shrink: 0;
+        .MuiTypography-root {
+            font-size: $font13;
+            font-family: $fontOutfitSemiBold;
+            color: $darkIndigo;
+        }
+        &:hover {
+            background-color: $backgroundHover !important;
+            border-color: $greyText !important;
+        }
+    }
+    &.button-delete {
+        background-color: $paleRed !important;
+        color: $white !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 6px 16px !important;
+        height: 32px !important;
+        width: auto !important;
+        margin-top: 0 !important;
+        &:hover {
+            background-color: $error !important;
+        }
+        .MuiTypography-root {
+            font-size: $font14;
+            font-family: $fontOutfitSemiBold;
+        }
+    }
+    &.button-deselect {
+        margin-top: 0 !important;
+        width: auto !important;
+        height: 32px !important;
+        min-width: 0 !important;
+        box-shadow: none !important;
+        color: $greyText !important;
+        padding: 4px 6px !important;
+        &:hover {
+            background-color: $backgroundHover !important;
+        }
+        .MuiButton-startIcon svg {
+            color: $greyText;
+        }
+    }
+    &.button-edit-profile {
+        margin-top: 0 !important;
+        width: auto !important;
+        height: 36px !important;
+        padding: 8px 20px !important;
+        box-shadow: none !important;
+        border: 1px solid $primaryBlue !important;
+        color: $primaryBlue !important;
+        .MuiTypography-root {
+            font-size: $font14;
+            font-family: $fontOutfitSemiBold;
+            color: $primaryBlue;
+        }
+    }
+}
+
+.range-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: $font12;
+    font-family: $fontOutfitSemiBold;
+    color: $greyText;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+
+    &:hover {
+        color: $darkIndigo;
+    }
+
+    &.active {
+        background: $white;
+        color: $primaryBlue;
+        box-shadow: 0 1px 2px rgba($darkIndigo, 0.08);
+    }
+}
+
+.header-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
     padding: 0 16px;
-    width: auto !important;
-    height: 36px;
-    border: 1px solid $lightCyanBlue !important;
-    box-shadow: none !important;
     border-radius: 8px;
-    color: $darkIndigo !important;
+    border: 1px solid $lightCyanBlue;
+    background: $white;
+    cursor: pointer;
     flex-shrink: 0;
-    .MuiTypography-root {
-      font-size: $font13;
-      font-family: $fontOutfitSemiBold;
-      color: $darkIndigo;
+    color: $darkIndigo;
+    font-size: $font13;
+    font-family: $fontOutfitSemiBold;
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
+
+    svg {
+        color: $greyText;
     }
+
     &:hover {
-      background-color: $backgroundHover !important;
-      border-color: $greyText !important;
+        background-color: $backgroundHover;
+        border-color: $greyText;
     }
-  }
-  &.button-delete {
-    background-color: $paleRed !important;
-    color: $white !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 6px 16px !important;
-    height: 32px !important;
-    width: auto !important;
-    margin-top: 0 !important;
-    &:hover {
-      background-color: $error !important;
-    }
-    .MuiTypography-root {
-      font-size: $font14;
-      font-family: $fontOutfitSemiBold;
-    }
-  }
-  &.button-deselect {
-    margin-top: 0 !important;
-    width: auto !important;
-    height: 32px !important;
-    min-width: 0 !important;
-    box-shadow: none !important;
-    color: $greyText !important;
-    padding: 4px 6px !important;
-    &:hover {
-      background-color: $backgroundHover !important;
-    }
-    .MuiButton-startIcon svg {
-      color: $greyText;
-    }
-  }
-  &.button-edit-profile {
-    margin-top: 0 !important;
-    width: auto !important;
-    height: 36px !important;
-    padding: 8px 20px !important;
-    box-shadow: none !important;
-    border: 1px solid $primaryBlue !important;
-    color: $primaryBlue !important;
-    .MuiTypography-root {
-      font-size: $font14;
-      font-family: $fontOutfitSemiBold;
-      color: $primaryBlue;
-    }
-  }
 }
 
 .bulk-bar-delete-btn,
 .bulk-bar-deselect-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  border: 1px solid $lightCyanBlue;
-  background: transparent;
-  cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
-  flex-shrink: 0;
-
-  svg {
-    color: $darkIndigo;
-  }
-
-  &:hover {
-    background-color: $backgroundHover;
-    border-color: $primaryBlue;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid $lightCyanBlue;
+    background: transparent;
+    cursor: pointer;
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
+    flex-shrink: 0;
 
     svg {
-      color: $primaryBlue;
+        color: $darkIndigo;
     }
-  }
+
+    &:hover {
+        background-color: $backgroundHover;
+        border-color: $primaryBlue;
+
+        svg {
+            color: $primaryBlue;
+        }
+    }
 }
 
 .bdm-btn {
-  flex: 1;
-  height: 40px;
-  border-radius: 8px;
-  font-size: $font14;
-  font-family: $fontOutfitSemiBold;
-  cursor: pointer;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  transition: background-color 0.15s ease;
+    flex: 1;
+    height: 40px;
+    border-radius: 8px;
+    font-size: $font14;
+    font-family: $fontOutfitSemiBold;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background-color 0.15s ease;
 
-  &.bdm-cancel {
-    background-color: $darkIndigo;
-    color: $white;
+    &.bdm-cancel {
+        background-color: $darkIndigo;
+        color: $white;
 
-    &:hover {
-      background-color: #132a5e;
-    }
-  }
-
-  &.bdm-delete {
-    background-color: $lightCyanBlue;
-    color: $greyText;
-    cursor: not-allowed;
-
-    svg {
-      opacity: 0.5;
+        &:hover {
+            background-color: #132a5e;
+        }
     }
 
-    &.enabled {
-      background-color: $paleRed;
-      color: $white;
-      cursor: pointer;
+    &.bdm-delete {
+        background-color: $lightCyanBlue;
+        color: $greyText;
+        cursor: not-allowed;
 
-      svg {
-        opacity: 1;
-      }
+        svg {
+            opacity: 0.5;
+        }
 
-      &:hover {
-        background-color: $error;
-      }
+        &.enabled {
+            background-color: $paleRed;
+            color: $white;
+            cursor: pointer;
+
+            svg {
+                opacity: 1;
+            }
+
+            &:hover {
+                background-color: $error;
+            }
+        }
+
+        &:disabled {
+            opacity: 0.8;
+        }
     }
-
-    &:disabled {
-      opacity: 0.8;
-    }
-  }
 }

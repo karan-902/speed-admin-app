@@ -4,7 +4,7 @@ import { callAPIInterface } from "../utils";
 export type PaginatedResponse<T> = {
     has_more: boolean;
     data: T[];
-    ending_before: number | null;
+    page_id: number | null;
 };
 
 type Config<T> = {
@@ -24,7 +24,6 @@ export function usePaginatedList<T extends { id: string }>({
     const endingBeforeRef = useRef<number | null>(null);
     const isFetchingRef = useRef(false);
 
-    // Stable refs so `load` never becomes stale
     const buildPathRef = useRef(buildPath);
     buildPathRef.current = buildPath;
     const onFirstLoadRef = useRef(onFirstLoad);
@@ -50,7 +49,7 @@ export function usePaginatedList<T extends { id: string }>({
                 ? onFirstLoadRef.current(res.data)
                 : onAppendRef.current(res.data);
             hasMoreRef.current = res.has_more;
-            endingBeforeRef.current = res.ending_before;
+            endingBeforeRef.current = res.page_id;
         } finally {
             isFetchingRef.current = false;
             setLoadingRef.current(false);

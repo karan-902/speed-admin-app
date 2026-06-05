@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import UserForm from "./UserForm";
 import { TableCell, TableRow } from "@mui/material";
 import EntityListPage from "../../components/common/EntityListPage";
 import EntityList from "../../components/common/EntityList";
@@ -24,7 +25,11 @@ const USER_ROLE_TABS: { label: string; value: string }[] = [
 const UsersTableHeader = () => (
     <TableRow>
         {userColumns.map((col, i) => (
-            <TableCell key={col.label ?? i} component="th">
+            <TableCell
+                key={col.label ?? i}
+                component="th"
+                style={col.width ? { width: col.width } : undefined}
+            >
                 {col.label}
             </TableCell>
         ))}
@@ -34,6 +39,7 @@ const UsersTableHeader = () => (
 function Users() {
     const [loading, setLoading] = useState(false);
     const [tabValue, setTabValue] = useState("all");
+    const [isCreateOpen, setIsCreateOpen] = useState(false);
     const tabRef = useRef(tabValue);
     tabRef.current = tabValue;
 
@@ -51,21 +57,26 @@ function Users() {
         setLoading,
     });
 
-    useEffect(() => {
+    const refreshList = () => {
         dispatch(setUsers([]));
         reset();
         load(true);
+    };
+
+    useEffect(() => {
+        refreshList();
     }, [tabValue]);
 
     const onTabChange = (_: React.SyntheticEvent, value: string) =>
         setTabValue(value);
 
     return (
+        <>
         <EntityListPage
             entity={usersPageTitle}
             buttonLabel={usersActionButtonLabel}
             description={usersPageDescription}
-            onSubmit={() => {}}
+            onSubmit={() => setIsCreateOpen(true)}
         >
             <EntityList
                 hasMore={hasMoreRef.current}
@@ -79,6 +90,13 @@ function Users() {
                 list={users}
             />
         </EntityListPage>
+
+        <UserForm
+            open={isCreateOpen}
+            onClose={() => setIsCreateOpen(false)}
+            onSuccess={refreshList}
+        />
+        </>
     );
 }
 

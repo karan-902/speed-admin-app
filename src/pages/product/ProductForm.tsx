@@ -1,21 +1,52 @@
 import { useFormik } from "formik";
+import { object, string, mixed } from "yup";
 import Modal from "../../components//common/Modal/Modal";
 import CategorySelect from "./CategorySelect";
 import ProductUpload from "./ProductUpload";
 import ProductBasicFields from "./ProductBasicFields";
 import { useReduxDispatch, useReduxSelector } from "../../redux/hooks";
-import type { TProductForm } from "../../utils/components";
+import type { TImage, TProductForm } from "../../utils/components";
 import { toProductForm } from "../../utils/mapper"; // Assuming this utility correctly maps product.category_id
 import { getCategories, saveProduct } from "../../redux/thunks";
 import { useEffect, useMemo, type SetStateAction } from "react";
 
 import ComponentLoader from "../../components/common/Loader/ComponentLoader";
+import {
+    CATEGORY_REQUIRED_MESSAGE,
+    DESCRIPTION_REQUIRED_MESSAGE,
+    loadingProductForm,
+    NAME_REQUIRED_MESSAGE,
+    PRICE_INVALID_MESSAGE,
+    PRICE_REQUIRED_MESSAGE,
+    STOCK_INVALID_MESSAGE,
+    STOCK_REQUIRED_MESSAGE,
+    THUMBNAIL_REQUIRED_MESSAGE,
+} from "../../components/messages";
+
+const productSchema = object({
+    category_id: string().required(CATEGORY_REQUIRED_MESSAGE),
+    name: string().trim().required(NAME_REQUIRED_MESSAGE),
+    description: string().trim().required(DESCRIPTION_REQUIRED_MESSAGE),
+    price: string()
+        .required(PRICE_REQUIRED_MESSAGE)
+        .matches(/^\d+(\.\d{1,2})?$/, {
+            message: PRICE_INVALID_MESSAGE,
+            excludeEmptyString: true,
+        }),
+    stock: string()
+        .required(STOCK_REQUIRED_MESSAGE)
+        .matches(/^\d+$/, {
+            message: STOCK_INVALID_MESSAGE,
+            excludeEmptyString: true,
+        }),
+    thumbnail: mixed<TImage>().required(THUMBNAIL_REQUIRED_MESSAGE),
+});
 
 interface IProductFormProps {
     open: boolean;
     edit: boolean;
     loading?: boolean;
-    disabled?: boolean;
+    onSuccess?: () => void;
     onDisabled?: React.Dispatch<SetStateAction<boolean>>;
     onClose: () => void;
 }
@@ -24,7 +55,7 @@ function ProductForm({
     open,
     edit,
     loading = false,
-    disabled,
+    onSuccess,
     onDisabled,
     onClose,
 }: IProductFormProps) {
@@ -63,6 +94,7 @@ function ProductForm({
             await dispatch(
                 saveProduct({ values, id: edit ? product?.id : undefined }),
             ).unwrap();
+            onSuccess?.();
             handleOnClose();
         } catch (error) {
             console.error(error);
@@ -72,7 +104,9 @@ function ProductForm({
     };
     const formik = useFormik<TProductForm>({
         enableReinitialize: true,
+        validateOnMount: true,
         initialValues: initialData,
+        validationSchema: productSchema,
         onSubmit: (values) => onAction(values),
     });
     const handleOnClose = () => {
@@ -93,6 +127,7 @@ function ProductForm({
             return (
                 <ComponentLoader
                     customClass={`flex flex-col items-center ${loaderClass}`}
+                    text={loadingProductForm}
                 />
             );
         }
@@ -111,7 +146,7 @@ function ProductForm({
             actionButtonLabel={modalActionLabel}
             title={modalTitle}
             className={modalClass}
-            disabled={disabled}
+            disabled={!formik.dirty || !formik.isValid || formik.isSubmitting}
             onClose={handleOnClose}
             onSubmit={formik.handleSubmit}
         >

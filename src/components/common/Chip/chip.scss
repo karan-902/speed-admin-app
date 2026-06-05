@@ -2,31 +2,68 @@
 
 .common-chip {
     max-width: 120px !important;
-    border-radius: 20px !important;
+    border-radius: 4px !important;
     height: 26px !important;
-
+    border: 1px solid $lightCyanBlue !important;
     .MuiChip-label {
         font-family: $fontOutfitSemiBold;
         font-size: $font12;
         padding: 0 10px;
     }
 
+    &.chip-success,
+    &.available-chip,
     &.product-spotlight-chip {
-        background-color: rgba($greenishTeal, 0.1) !important;
-        border: 1px solid rgba($greenishTeal, 0.2) !important;
-        border-radius: 20px !important;
-        .MuiChip-label { color: $greenishTeal; }
+        background-color: $greenishTeal !important;
+        border: 1px solid $greenishTeal !important;
+        .MuiChip-label {
+            color: $white;
+        }
     }
 
-    &.available-chip {
-        background-color: rgba($greenishTeal, 0.1) !important;
-        border: 1px solid rgba($greenishTeal, 0.2) !important;
-        .MuiChip-label { color: $greenishTeal; }
+    &.chip-info {
+        background-color: $white !important;
+
+        .MuiChip-label {
+            color: $primaryOrang;
+            font-weight: 400;
+        }
     }
 
+    // progress (shipped) — muted blue
+    &.chip-progress {
+        background-color: $USDCCardBg !important;
+        border: 1px solid $USDCCardBorder !important;
+        .MuiChip-label {
+            color: $USDCBtn;
+        }
+    }
+
+    // warning (pending) — amber
+    &.chip-warning {
+        background-color: $BTCCardBg !important;
+        border: 1px solid $BTCCardBorder !important;
+        .MuiChip-label {
+            color: $BTCBtn;
+        }
+    }
+
+    // danger (cancelled / failed) — red
+    &.chip-danger {
+        background-color: $errorBg !important;
+        border: 1px solid $errorBorder !important;
+        .MuiChip-label {
+            color: $error;
+        }
+    }
+
+    // neutral (user / inactive / archived) — grey
+    &.chip-neutral,
     &.archived-chip {
-        background-color: $paleGray !important;
+        background-color: $backgroundHover !important;
         border: 1px solid $lightCyanBlue !important;
-        .MuiChip-label { color: $greyText; }
+        .MuiChip-label {
+            color: $greyText;
+        }
     }
 }

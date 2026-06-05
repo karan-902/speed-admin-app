@@ -23,14 +23,19 @@ import {
     deleteMultipleProducts,
     setProducts,
 } from "../../redux/product/product.slice";
-import type { TProductsResponse } from "../../utils/utils";
+import type { TProduct } from "../../utils/utils";
 import type { TProductColumns, Field } from "../../utils/components";
 import { Trash2, X } from "lucide-react";
 import EntityList from "../../components/common/EntityList";
 import Box from "../../components/common/Box/Box";
 import Text from "../../components/common/Text/Text";
 import BulkDeleteModal from "../../components/common/BulkDeleteModal/BulkDeleteModal";
+import Input from "../../components/common/Input/Input";
+
 import ProductForm from "./ProductForm";
+import { usePaginatedList } from "../../hooks/usePaginatedList";
+import { useNavigate } from "react-router-dom";
+import FilterDrawer from "../../components/common/FilterDrawer";
 
 type SelectionCtx = {
     selectedIds: Set<string>;
@@ -83,7 +88,11 @@ const ProductsTableHeaderInner = ({
             </Box>
         </TableCell>
         {productColumns.map((col) => (
-            <TableCell key={String(col.key)} component="th">
+            <TableCell
+                key={String(col.key)}
+                component="th"
+                style={col.width ? { width: col.width } : undefined}
+            >
                 {col.label}
             </TableCell>
         ))}
@@ -98,6 +107,17 @@ const columnsWithSelect: Field<TProductColumns>[] = [
     ...productColumns,
 ];
 
+const FILTER_FIELDS: {
+    name: "priceMin" | "priceMax" | "stockMin" | "stockMax";
+    label: string;
+    placeholder: string;
+}[] = [
+    { name: "priceMin", label: "Min Price", placeholder: "0" },
+    { name: "priceMax", label: "Max Price", placeholder: "Any" },
+    { name: "stockMin", label: "Min Stock", placeholder: "0" },
+    { name: "stockMax", label: "Max Stock", placeholder: "Any" },
+];
+
 function Products() {
     const {
         setLoading,
@@ -108,22 +128,33 @@ function Products() {
         openCreate,
         closeCreate,
     } = useEntityList();
-    const limit = 20;
-    const hasMore = useRef(true);
-    const endingBefore = useRef<number | null>(null);
-    const isFetching = useRef(false);
-    const tabValueRef = useRef(tabValue);
-    tabValueRef.current = tabValue;
+    const navigate = useNavigate();
+    const LIMIT = 20;
 
+    const tabRef = useRef(tabValue);
+    tabRef.current = tabValue;
     const products = useReduxSelector((state) => state.product.list);
     const dispatch = useReduxDispatch();
-
     const productsRef = useRef(products);
     productsRef.current = products;
 
     const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [filters, setFilters] = useState({
+        priceMin: "",
+        priceMax: "",
+        stockMin: "",
+        stockMax: "",
+    });
+
+    const onFilterChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+    const clearFilters = () =>
+        setFilters({ priceMin: "", priceMax: "", stockMin: "", stockMax: "" });
 
     const toggle = useCallback((id: string) => {
         setSelectedIds((prev) => {
@@ -147,45 +178,28 @@ function Products() {
         [selectedIds, toggle],
     );
 
-    const getProducts = useCallback(async (isfirstLoad = false) => {
-        if (!hasMore.current || isFetching.current) return;
-        isFetching.current = true;
-        setLoading(true);
-        const tab = tabValueRef.current;
-        const cursor = endingBefore.current
-            ? `&ending_before=${endingBefore.current}`
-            : "";
-        const path =
-            tab !== "all"
-                ? `/products?status=${tab}&limit=${limit}${cursor}`
-                : `/products?limit=${limit}${cursor}`;
-        try {
-            const response = await callAPIInterface<void, TProductsResponse>(
-                "GET",
-                path,
-            );
-            if (isfirstLoad) {
-                dispatch(setProducts(response.data));
-            } else {
-                dispatch(appendProducts(response.data));
-            }
-            hasMore.current = response.has_more;
-            endingBefore.current = response.ending_before;
-        } catch (error) {
-            console.error(error);
-        } finally {
-            isFetching.current = false;
-            setLoading(false);
-        }
-    }, []);
+    const { load, reset, hasMoreRef } = usePaginatedList<TProduct>({
+        buildPath: (cursor) => {
+            const status = tabRef.current;
+            const statusParam =
+                tabRef.current !== "all" ? `&status=${status}` : "";
+            return `/products?limit=${LIMIT}${statusParam}${cursor}`;
+        },
+        onAppend: (data) => dispatch(appendProducts(data)),
+        onFirstLoad: (data) => dispatch(setProducts(data)),
+        setLoading,
+    });
+    const refreshList = () => {
+        dispatch(setProducts([]));
+        reset();
+        load(true);
+    };
 
     useEffect(() => {
-        dispatch(setProducts([]));
         setSelectedIds(new Set());
-        hasMore.current = true;
-        endingBefore.current = null;
-        isFetching.current = false;
-        getProducts(true);
+        dispatch(setProducts([]));
+        reset();
+        load(true);
     }, [tabValue]);
 
     const handleBulkDelete = async () => {
@@ -222,7 +236,11 @@ function Products() {
             ) : (
                 <TableRow>
                     {productColumns.map((col) => (
-                        <TableCell key={String(col.key)} component="th">
+                        <TableCell
+                            key={String(col.key)}
+                            component="th"
+                            style={col.width ? { width: col.width } : undefined}
+                        >
                             {col.label}
                         </TableCell>
                     ))}
@@ -238,6 +256,7 @@ function Products() {
                 buttonLabel={productsActionButtonLabel}
                 description={productsPageDescription}
                 onSubmit={openCreate}
+                onFilter={() => setIsFilterOpen(true)}
             >
                 {selectedIds.size > 0 && (
                     <Box customClass="flex items-center bulk-action-bar">
@@ -266,20 +285,22 @@ function Products() {
                     </Box>
                 )}
                 <EntityList
-                    hasMore={hasMore.current}
-                    loadMore={getProducts}
+                    hasMore={hasMoreRef.current}
+                    loadMore={load}
                     loading={loading}
                     tabValue={tabValue}
                     onChange={onTabChange}
                     columns={hasProducts ? columnsWithSelect : productColumns}
                     header={tableHeader}
                     list={products}
+                    onRowClick={(id) => navigate(`/products/${id}`)}
                 />
             </EntityListPage>
 
             <ProductForm
                 open={isCreateOpen}
                 edit={false}
+                onSuccess={refreshList}
                 onClose={closeCreate}
             />
 
@@ -290,6 +311,26 @@ function Products() {
                 onConfirm={handleBulkDelete}
                 onClose={() => setIsDeleteOpen(false)}
             />
+
+            <FilterDrawer
+                open={isFilterOpen}
+                onClose={() => setIsFilterOpen(false)}
+                onClear={clearFilters}
+                onApply={() => setIsFilterOpen(false)}
+            >
+                {FILTER_FIELDS.map((field) => (
+                    <Input
+                        key={field.name}
+                        showLabel
+                        type="number"
+                        name={field.name}
+                        label={field.label}
+                        placeholder={field.placeholder}
+                        value={filters[field.name]}
+                        onChange={onFilterChange}
+                    />
+                ))}
+            </FilterDrawer>
         </ProductSelectionContext.Provider>
     );
 }

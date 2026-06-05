@@ -50,7 +50,7 @@ export type TProductsResponse = {
     has_more: boolean;
     object: "list" | null;
     data: TProduct[];
-    ending_before: number | null;
+    page_id: number | null;
 };
 export type TCategoriesResponse = {
     has_more: boolean;
@@ -104,7 +104,6 @@ export type TCategoryProduct = {
     created_at: number;
     updated_at: number;
 };
-
 
 // ── Orders ────────────────────────────────────────────────────────────────────
 
@@ -200,4 +199,15 @@ export type TProfile = {
 export type TProfileUpdateResponse = {
     message: string;
     data: TProfile;
+};
+
+// ── Dashboard ─────────────────────────────────────────────────────────────────
+
+export type TDashboardStats = {
+    total_revenue: number;
+    total_orders: number;
+    total_products: number;
+    total_users: number;
+    orders_change_pct: number;
+    revenue_change_pct: number;
 };

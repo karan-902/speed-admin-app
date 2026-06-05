@@ -4,6 +4,7 @@ import {
   Select as CustomSelect,
   type BaseSelectProps,
 } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "./select.scss";
 import { Children } from "react";
 import { iconsForAlert } from "../../images";
@@ -28,6 +29,7 @@ export default function SelectData({
     <>
       <CustomSelect
         error={error}
+        IconComponent={KeyboardArrowDownIcon}
         displayEmpty
         renderValue={(value) => {
           if (!value) {

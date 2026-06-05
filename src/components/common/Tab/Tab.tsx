@@ -13,7 +13,6 @@ interface ITabProps {
     ) => void | undefined;
 }
 function Tab({ value, onChange, tabs, children }: ITabProps) {
-    // console.log({ onchange: onChange, value: value });
     return (
         <TabContext value={value}>
             <TabList onChange={onChange}>

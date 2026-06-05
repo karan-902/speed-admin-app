@@ -27,7 +27,11 @@ const ORDER_STATUS_TABS: { label: string; value: string }[] = [
 const OrdersTableHeader = () => (
     <TableRow>
         {orderColumns.map((col, i) => (
-            <TableCell key={col.label ?? i} component="th">
+            <TableCell
+                key={col.label ?? i}
+                component="th"
+                style={col.width ? { width: col.width } : undefined}
+            >
                 {col.label}
             </TableCell>
         ))}

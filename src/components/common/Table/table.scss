@@ -41,11 +41,8 @@
 
 .table {
     &.data-table {
-        &.has-data {
-            tbody {
-                height: 100%;
-            }
-        }
+        table-layout: fixed;
+        width: 100%;
         .MuiTableRow-root {
             cursor: pointer;
             background: #fff;

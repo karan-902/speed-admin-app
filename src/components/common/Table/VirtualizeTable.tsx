@@ -22,9 +22,10 @@ type VirtualTableProps<T extends { id: string }> = {
     header: () => ReactNode;
     isLoading?: boolean;
     hasMore?: boolean;
+    onRowClick?: (id: string) => void;
     loadMore?: () => void;
 };
-// enter only on fast touchpad swipes (>500 px/s); mouse wheel stays below this
+
 const SCROLL_SEEK_CONFIG = {
     enter: (velocity: number) => Math.abs(velocity) > 500,
     exit: (velocity: number) => Math.abs(velocity) < 100,
@@ -51,6 +52,7 @@ function VirtualizeTable<T extends { id: string }>({
     loadMore,
     hasMore,
     columns,
+    onRowClick,
 }: VirtualTableProps<T>) {
     const loaderRef = useRef(loader);
     loaderRef.current = loader;
@@ -64,9 +66,31 @@ function VirtualizeTable<T extends { id: string }>({
     hasMoreRef.current = hasMore;
     const loadMoreRef = useRef(loadMore);
     loadMoreRef.current = loadMore;
+    const dataRef = useRef(data);
+    dataRef.current = data;
+    const onRowClickRef = useRef(onRowClick);
+    onRowClickRef.current = onRowClick;
     const components: TableComponents<T, any> = useMemo(
         () => ({
             ...tableComponents,
+            TableRow: (props: TableRowProps) => {
+                const index = (props as { "data-index"?: number })[
+                    "data-index"
+                ];
+                const onClick = () => {
+                    const item =
+                        index !== undefined
+                            ? dataRef.current[index]
+                            : undefined;
+                    if (item) onRowClickRef.current?.(item.id);
+                };
+                return (
+                    <TableRow
+                        {...props}
+                        onClick={onRowClickRef.current ? onClick : undefined}
+                    />
+                );
+            },
             ScrollSeekPlaceholder: ({ height }) => (
                 <>{loaderRef.current(height)}</>
             ),
@@ -97,7 +121,10 @@ function VirtualizeTable<T extends { id: string }>({
         return (
             <>
                 {columnsRef.current.map((col) => (
-                    <TableCell key={String(col.key)}>
+                    <TableCell
+                        key={String(col.key)}
+                        style={col.width ? { width: col.width } : undefined}
+                    >
                         {col.render && col.render(item)}
                     </TableCell>
                 ))}
@@ -109,18 +136,15 @@ function VirtualizeTable<T extends { id: string }>({
         [],
     );
     const onEndReached = useCallback(() => {
-        if (!loadingRef.current && hasMoreRef.current && loadMoreRef.current) {
+        if (!loadingRef.current && hasMoreRef.current && loadMoreRef.current)
             loadMoreRef.current();
-        }
     }, []);
     return (
         <div className="virtual-table-wrapper">
             <TableVirtuoso
-                style={{ height: "calc(100vh - 150px)" }}
+                style={{ height: "calc(100vh - 200px)" }}
                 fixedHeaderContent={header}
-                fixedItemHeight={50}
                 data={data}
-                overscan={200}
                 endReached={onEndReached}
                 itemContent={itemContent}
                 scrollSeekConfiguration={SCROLL_SEEK_CONFIG}

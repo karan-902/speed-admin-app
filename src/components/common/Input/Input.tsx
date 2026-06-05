@@ -16,6 +16,7 @@ const Input: FC<InputProps> = forwardRef(
             showLabel,
             fullWidth,
             label,
+            optional,
             type = "text",
             isError,
             isPasswordVisible,
@@ -43,7 +44,7 @@ const Input: FC<InputProps> = forwardRef(
 
         return (
             <Box className={elementClasess}>
-                {showLabel && <Label label={label} />}
+                {showLabel && <Label label={label} optional={optional} />}
                 <InputBase
                     className={clasess}
                     error={isError}

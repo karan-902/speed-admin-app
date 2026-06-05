@@ -9,7 +9,6 @@ import {
     LayoutGrid,
     LogOut,
     Mail,
-    MoreHorizontal,
     Package,
     Pencil,
     Plus,
@@ -22,6 +21,8 @@ import {
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import WarningIcon from "@mui/icons-material/Warning";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
 import InfoIcon from "@mui/icons-material/Info";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 export const vector =
@@ -194,6 +195,9 @@ export const deleteIcon =
 export const noDataFoundIcon =
     import.meta.env.VITE_APP_IMAGE_ICON_S3_URL +
     "/chrome-wallet/no-data-found.svg";
+export const dashBoardRevenuEarth =
+    import.meta.env.VITE_APP_IMAGE_ICON_S3_URL +
+    "/app/dashboard-balance-earth.png";
 export const noDataFoundImage =
     import.meta.env.VITE_APP_IMAGE_ICON_DEV_URL + "/app/empty_transactions.svg";
 export const timerIconGrey =
@@ -247,10 +251,13 @@ export const buttonIcons = {
     ),
     checked: <CheckCircleIcon className="checked-icon" />,
     horizontalThreeDots: (
-        <MoreHorizontal
+        <MoreHorizIcon
             tabIndex={0}
-            color={MUTED}
-            size={24}
+            sx={{
+                "&.Mui-focused": {
+                    outline: "3px solid #bfd1ff",
+                },
+            }}
             className="horizontal-dot-icon"
         />
     ),

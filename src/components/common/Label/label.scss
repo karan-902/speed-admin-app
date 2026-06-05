@@ -5,4 +5,12 @@
     color: $greyText;
     font-family: $fontOutfitMedium;
   }
+  .label-row {
+    gap: 6px;
+  }
+  .label-optional {
+    font-size: 12px !important;
+    color: $lightGrey !important;
+    font-family: $fontOutfitRegular !important;
+  }
 }

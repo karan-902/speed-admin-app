@@ -15,8 +15,6 @@ interface BulkDeleteModalProps {
     onClose: () => void;
 }
 
-const CONFIRM_KEYWORD = "DELETE ALL";
-
 const BulkDeleteModal: FC<BulkDeleteModalProps> = ({
     open,
     count,
@@ -35,7 +33,14 @@ const BulkDeleteModal: FC<BulkDeleteModalProps> = ({
         }
     }, [open]);
 
-    const isConfirmValid = inputValue === CONFIRM_KEYWORD;
+    const isSingle = count === 1;
+    const confirmKeyword = isSingle ? "DELETE" : "DELETE ALL";
+    const confirmTitle = isSingle
+        ? "Delete this product?"
+        : "Delete all products?";
+    const deleteButtonLabel = isSingle ? "Delete product" : "Delete all products";
+
+    const isConfirmValid = inputValue === confirmKeyword;
 
     const handleDelete = async () => {
         deletedCountRef.current = count;
@@ -61,7 +66,7 @@ const BulkDeleteModal: FC<BulkDeleteModalProps> = ({
                         <TriangleAlert size={24} />
                     </Box>
 
-                    <Text customClass="bdm-title">Delete all products?</Text>
+                    <Text customClass="bdm-title">{confirmTitle}</Text>
 
                     <Text customClass="bdm-description">
                         You are about to permanently delete{" "}
@@ -82,12 +87,12 @@ const BulkDeleteModal: FC<BulkDeleteModalProps> = ({
 
                     <Text customClass="bdm-input-label">
                         Type{" "}
-                        <code className="bdm-keyword">{CONFIRM_KEYWORD}</code>{" "}
+                        <code className="bdm-keyword">{confirmKeyword}</code>{" "}
                         to confirm
                     </Text>
                     <InputBase
                         className="bdm-input"
-                        placeholder={CONFIRM_KEYWORD}
+                        placeholder={confirmKeyword}
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         fullWidth
@@ -106,7 +111,7 @@ const BulkDeleteModal: FC<BulkDeleteModalProps> = ({
                             onClick={handleDelete}
                         >
                             <Trash2 size={14} />
-                            {isDeleting ? "Deleting..." : "Delete all products"}
+                            {isDeleting ? "Deleting..." : deleteButtonLabel}
                         </button>
                     </Box>
                 </Box>
@@ -116,7 +121,9 @@ const BulkDeleteModal: FC<BulkDeleteModalProps> = ({
                         <CheckCircle2 size={32} />
                     </Box>
                     <Text customClass="bdm-success-title">
-                        All products deleted
+                        {deletedCountRef.current === 1
+                            ? "Product deleted"
+                            : "All products deleted"}
                     </Text>
                     <Text customClass="bdm-success-sub">
                         {deletedCountRef.current}{" "}

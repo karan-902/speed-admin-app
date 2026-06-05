@@ -1,5 +1,25 @@
 import type { TImage } from "./utils/components";
 
+export type RangeType = "today" | "yesterday" | "2d" | "7d" | "30d" | "1y";
+
+export type RevenuePoint = {
+    date: string; // "DD-MM-YYYY"
+    revenue: number;
+    orders: number;
+};
+
+export type RevenueResponse = {
+    points: RevenuePoint[];
+};
+
+export type TCreateAdmin = {
+    email: string;
+    password: string;
+    first_name: string;
+    last_name: string;
+    phone?: number;
+};
+
 export type TLoginPayload = {
     email: string;
     password: string;

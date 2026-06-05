@@ -19,7 +19,15 @@ const categoriesHeader = () => {
     return (
         <TableRow>
             {categoryColumns.map((category) => (
-                <TableCell key={category.key}>{category.label}</TableCell>
+                <TableCell
+                    key={category.key}
+                    component="th"
+                    style={
+                        category.width ? { width: category.width } : undefined
+                    }
+                >
+                    {category.label}
+                </TableCell>
             ))}
         </TableRow>
     );

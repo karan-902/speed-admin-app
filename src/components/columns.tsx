@@ -22,8 +22,39 @@ export const productAllDetailColumns: TProductSections[] = [
             fields: [
                 {
                     label: "Status",
-                    key: "visiblity",
-                    render: (row) => (row.visiblity ? "Available" : "Archived"),
+                    key: "visibility",
+                    render: (row) => (
+                        <Chip
+                            customClass={
+                                row.visibility
+                                    ? "available-chip"
+                                    : "archived-chip"
+                            }
+                            label={row.visibility ? "Available" : "Archived"}
+                        />
+                    ),
+                },
+                {
+                    label: "Price",
+                    key: "price",
+                    render: (row) => formatPrice(row.price),
+                },
+                {
+                    label: "Stock",
+                    key: "stock",
+                    render: (row) => row.stock,
+                },
+                {
+                    label: "Category",
+                    key: "category_name",
+                    render: (row) =>
+                        row.category_name ? row.category_name : "Not found",
+                },
+                {
+                    label: "Description",
+                    key: "description",
+                    render: (row) =>
+                        row.description ? row.description : "Not found",
                 },
                 {
                     label: "Date Created",
@@ -34,12 +65,6 @@ export const productAllDetailColumns: TProductSections[] = [
                     label: "Date Updated",
                     key: "updated_at",
                     render: (row) => formateTime(row.updated_at),
-                },
-                {
-                    label: "Category Name",
-                    key: "category_name",
-                    render: (row) =>
-                        row.category_name ? row.category_name : "Not found",
                 },
             ],
         },
@@ -137,6 +162,7 @@ export const categoryColumns: Field<TCategoryColumns>[] = [
     {
         key: "id",
         label: "Category ID",
+        width: 230,
         render: (row) => (
             <Box customClass="id-cell" onClick={(e) => e.stopPropagation()}>
                 <Input
@@ -152,14 +178,18 @@ export const categoryColumns: Field<TCategoryColumns>[] = [
     {
         key: "name",
         label: "Category Name",
+        width: 240,
         render: (row) => <Text>{row.name}</Text>,
     },
     {
         key: "visibility",
         label: "Status",
+        width: 130,
         render: (row) => (
             <Chip
-                customClass={row.visibility ? "available-chip" : "archived-chip"}
+                customClass={
+                    row.visibility ? "available-chip" : "archived-chip"
+                }
                 label={row.visibility ? "Available" : "Archived"}
             />
         ),
@@ -167,19 +197,46 @@ export const categoryColumns: Field<TCategoryColumns>[] = [
     {
         key: "created_at",
         label: "Created On",
+        width: 150,
         render: (row) => formateTime(row.created_at),
     },
     {
         key: "updated_at",
         label: "Updated On",
+        width: 150,
         render: (row) => formateTime(row.updated_at),
     },
 ];
+
+const toTitleCase = (value: string) =>
+    value
+        ? value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
+        : value;
+
+const ORDER_STATUS_TONE: Record<string, string> = {
+    PENDING: "chip-warning",
+    CONFIRMED: "chip-info",
+    SHIPPED: "chip-progress",
+    DELIVERED: "chip-success",
+    CANCELLED: "chip-danger",
+};
+
+const PAYMENT_STATUS_TONE: Record<string, string> = {
+    PENDING: "chip-warning",
+    SUCCESS: "chip-success",
+    FAILED: "chip-danger",
+};
+
+const USER_ROLE_TONE: Record<string, string> = {
+    ADMIN: "chip-info",
+    USER: "chip-neutral",
+};
 
 export const orderColumns: Field<TOrderColumns>[] = [
     {
         key: "id",
         label: "Order ID",
+        width: 230,
         render: (row) => (
             <Box customClass="id-cell" onClick={(e) => e.stopPropagation()}>
                 <Input
@@ -194,6 +251,7 @@ export const orderColumns: Field<TOrderColumns>[] = [
     },
     {
         label: "Customer",
+        width: 240,
         render: (row) => (
             <Text>{`${row.user.first_name} ${row.user.last_name}`}</Text>
         ),
@@ -201,21 +259,37 @@ export const orderColumns: Field<TOrderColumns>[] = [
     {
         key: "total_amount",
         label: "Total",
+        width: 130,
         render: (row) => formatPrice(row.total_amount),
     },
     {
         key: "status",
         label: "Order Status",
-        render: (row) => <Text>{row.status}</Text>,
+        width: 130,
+        render: (row) => (
+            <Chip
+                customClass={ORDER_STATUS_TONE[row.status] ?? "chip-neutral"}
+                label={toTitleCase(row.status)}
+            />
+        ),
     },
     {
         key: "payment_status",
         label: "Payment",
-        render: (row) => <Text>{row.payment_status}</Text>,
+        width: 130,
+        render: (row) => (
+            <Chip
+                customClass={
+                    PAYMENT_STATUS_TONE[row.payment_status] ?? "chip-neutral"
+                }
+                label={toTitleCase(row.payment_status)}
+            />
+        ),
     },
     {
         key: "created_at",
         label: "Created On",
+        width: 150,
         render: (row) => formateTime(row.created_at),
     },
 ];
@@ -224,6 +298,7 @@ export const userColumns: Field<TUserColumns>[] = [
     {
         key: "id",
         label: "User ID",
+        width: 230,
         render: (row) => (
             <Box customClass="id-cell" onClick={(e) => e.stopPropagation()}>
                 <Input
@@ -239,25 +314,40 @@ export const userColumns: Field<TUserColumns>[] = [
     {
         key: "email",
         label: "Email",
+        width: 230,
         render: (row) => <Text>{row.email}</Text>,
     },
     {
         label: "Name",
+        width: 180,
         render: (row) => <Text>{`${row.first_name} ${row.last_name}`}</Text>,
     },
     {
         key: "role",
         label: "Role",
-        render: (row) => <Text>{row.role}</Text>,
+        width: 120,
+        render: (row) => (
+            <Chip
+                customClass={USER_ROLE_TONE[row.role] ?? "chip-neutral"}
+                label={toTitleCase(row.role)}
+            />
+        ),
     },
     {
         key: "is_active",
         label: "Status",
-        render: (row) => (row.is_active ? "Active" : "Inactive"),
+        width: 120,
+        render: (row) => (
+            <Chip
+                customClass={row.is_active ? "chip-success" : "chip-neutral"}
+                label={row.is_active ? "Active" : "Inactive"}
+            />
+        ),
     },
     {
         key: "created_at",
         label: "Joined",
+        width: 150,
         render: (row) => formateTime(row.created_at),
     },
 ];
@@ -266,6 +356,7 @@ export const productColumns: Field<TProductColumns>[] = [
     {
         key: "id",
         label: "Product ID",
+        width: 230,
         render: (row) => (
             <Box customClass="id-cell" onClick={(e) => e.stopPropagation()}>
                 <Input
@@ -281,19 +372,24 @@ export const productColumns: Field<TProductColumns>[] = [
     {
         key: "name",
         label: "Product Name",
+        width: 240,
         render: (row) => <Text>{row.name}</Text>,
     },
     {
         key: "price",
         label: "Price",
+        width: 130,
         render: (row) => formatPrice(row.price),
     },
     {
         key: "visibility",
         label: "Status",
+        width: 130,
         render: (row) => (
             <Chip
-                customClass={row.visibility ? "available-chip" : "archived-chip"}
+                customClass={
+                    row.visibility ? "available-chip" : "archived-chip"
+                }
                 label={row.visibility ? "Available" : "Archived"}
             />
         ),
@@ -301,11 +397,13 @@ export const productColumns: Field<TProductColumns>[] = [
     {
         key: "created_at",
         label: "Created On",
+        width: 150,
         render: (row) => formateTime(row.created_at),
     },
     {
         key: "updated_at",
         label: "Updated On",
+        width: 150,
         render: (row) => formateTime(row.updated_at),
     },
 ];

@@ -1,20 +1,22 @@
 import {
-  AppBar as CustomAppBar,
-  type AppBarProps,
-  Toolbar,
+    AppBar as CustomAppBar,
+    type AppBarProps,
+    Toolbar,
 } from "@mui/material";
 import classNames from "classnames";
 import "./appbar.scss";
 interface IAppBar extends AppBarProps {
-  customClass?: string;
+    customClass?: string;
+    toolbarClass?: string;
 }
-function AppBar({ customClass, ...props }: IAppBar) {
-  const classess = classNames("appbar", customClass);
-  return (
-    <CustomAppBar className={classess} {...props}>
-      <Toolbar>{props.children}</Toolbar>
-    </CustomAppBar>
-  );
+function AppBar({ customClass, toolbarClass, ...props }: IAppBar) {
+    const classess = classNames("appbar", customClass);
+    const toolbarclasses = classNames("toolbar", toolbarClass);
+    return (
+        <CustomAppBar className={classess} {...props}>
+            <Toolbar className={toolbarclasses}>{props.children}</Toolbar>
+        </CustomAppBar>
+    );
 }
 
 export default AppBar;

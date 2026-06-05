@@ -36,6 +36,7 @@ export interface InputProps extends InputBaseProps {
     elementClass?: string;
     showLabel?: boolean;
     label?: string;
+    optional?: boolean;
     type?: string;
     isError?: boolean;
     isPasswordVisible?: boolean;
@@ -65,6 +66,7 @@ export type Ttabs = "all" | "available" | "archive";
 export type Field<T> = {
     key?: keyof T;
     label: string;
+    width?: string | number;
     render?: (row: T) => React.ReactNode;
 };
 export type Fields<T> = {
@@ -102,7 +104,11 @@ export type TCategorySummeryObj = {
     spotlighted_products: number;
 };
 export type TProductDetailsObj = {
-    visiblity: boolean;
+    visibility: boolean;
+    spotlight: boolean;
+    price: number;
+    stock: number;
+    description: string;
     created_at: number;
     updated_at: number;
     category_name: string;

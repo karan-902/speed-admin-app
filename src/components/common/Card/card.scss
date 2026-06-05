@@ -1,18 +1,166 @@
 @use "../../../assets/default.scss" as *;
 
-.common-card {
-  &.category-product {
-    width: 100%;
-    height: 100%;
+.main-menu-item {
+    padding: 0 !important;
 
-    .MuiCardMedia-root {
-      padding-top: 20px;
-      width: 150px;
-      display: flex;
-      justify-self: center;
+    .MuiList-root .MuiListItem-root .MuiListItemButton-root {
+        height: 32px;
+        padding: 6px 8px;
+        border-radius: 5px;
+        transition: background-color 0.15s ease;
+
+        .MuiListItemIcon-root {
+            min-width: 30px;
+            svg {
+                color: $greyText;
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        .MuiListItemText-root .MuiTypography-root {
+            color: $darkIndigo;
+            font-family: $fontOutfitMedium;
+            font-size: $font14;
+        }
+
+        &:hover {
+            background-color: $backgroundHover;
+            .MuiListItemIcon-root svg {
+                color: $darkIndigo;
+            }
+        }
+
+        &.active {
+            background-color: $backgroundHover;
+            .MuiListItemIcon-root svg {
+                color: $darkIndigo;
+            }
+            .MuiListItemText-root .MuiTypography-root {
+                color: $darkIndigo;
+                font-family: $fontOutfitSemiBold;
+            }
+        }
     }
-    .MuiCardContent-root {
-      //   width: 100%;
+
+    .MuiList-root {
+        padding: 8px 10px;
+        .MuiListItem-root {
+            padding: 0;
+            margin-bottom: 2px;
+        }
     }
-  }
+}
+
+.common-card {
+    &.stat-hero {
+        position: relative;
+        overflow: hidden;
+        flex: 0 0 280px;
+        border-radius: 12px;
+        padding: 22px 24px;
+        background: $darkBlue;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        text-align: center;
+        gap: 6px;
+        min-height: 150px;
+        box-shadow: none;
+        .stat-hero-earth {
+            position: absolute;
+            left: -90px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 220px;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+    }
+    &.stat-group {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        align-items: stretch;
+        border: 1px solid $lightCyanBlue;
+        border-radius: 12px;
+        padding: 18px 0;
+        box-shadow:
+            0 1px 3px rgba($darkIndigo, 0.04),
+            0 1px 2px rgba($darkIndigo, 0.03);
+        .stat-item:not(:last-child) {
+            border-right: 1px solid $lightCyanBlue;
+        }
+    }
+    &.category-product {
+        width: 100%;
+        height: 100%;
+
+        .MuiCardMedia-root {
+            padding-top: 20px;
+            width: 150px;
+            display: flex;
+            justify-self: center;
+        }
+        .MuiCardContent-root {
+            &.main-menu-item {
+                padding: 0 !important;
+                box-shadow: none !important;
+                background: transparent !important;
+
+                .MuiList-root {
+                    padding: 8px 10px;
+
+                    .MuiListItem-root {
+                        padding: 0;
+                        margin-bottom: 2px;
+
+                        .MuiListItemButton-root {
+                            height: 32px;
+                            padding: 6px 8px;
+                            border-radius: 5px;
+                            transition: background-color 0.15s ease;
+
+                            .MuiListItemIcon-root {
+                                min-width: 30px;
+                                svg {
+                                    color: $greyText;
+                                    width: 18px;
+                                    height: 18px;
+                                }
+                            }
+
+                            .MuiListItemText-root .MuiTypography-root {
+                                color: $darkIndigo;
+                                font-family: $fontOutfitMedium;
+                                font-size: $font14;
+                            }
+
+                            &:hover {
+                                background-color: $backgroundHover;
+
+                                .MuiListItemIcon-root svg {
+                                    color: $darkIndigo;
+                                }
+                            }
+
+                            &.active {
+                                background-color: $backgroundHover;
+
+                                .MuiListItemIcon-root svg {
+                                    color: $darkIndigo;
+                                }
+
+                                .MuiListItemText-root .MuiTypography-root {
+                                    color: $darkIndigo;
+                                    font-family: $fontOutfitSemiBold;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -10,7 +10,7 @@ import Categories from "../pages/category/Categories";
 import Orders from "../pages/orders/Orders";
 import Users from "../pages/users/Users";
 import Profile from "../pages/profile/Profile";
-import Ref from "../pages/admin/Ref";
+import Dashboard from "../pages/admin/Dashboard";
 
 function EcommerceRouter() {
     return (
@@ -21,7 +21,7 @@ function EcommerceRouter() {
             </Route>
 
             <Route element={<ProtectRoute />}>
-                <Route path="/" element={<Ref />} />
+                <Route path="/" element={<Dashboard />} />
 
                 <Route path="/products">
                     <Route index element={<Products />} />

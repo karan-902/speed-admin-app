@@ -1,5 +1,5 @@
 export const logoName = "Speed E-commerce";
-export const logoNameForAdmin = "Speed E-commerce Admin";
+export const logoNameForAdmin = "Speed Admin";
 export const signInYourAccount = "Sign in to your account";
 export const signUpYourAccount = "Sign up to your account";
 export const copiedText = "Copied";
@@ -27,6 +27,10 @@ export const register = "Register";
 export const profileText = "Profile";
 export const logoutText = "Logout";
 export const loadingProductForm = "Loading Product Form...";
+export const loadingDashboardText = "Loading Dashboard...";
+export const addingUserText = "Adding User...";
+export const addUserTitle = "Add User";
+export const optionalText = "(optional)";
 export const EMAIL_REQUIRED_MESSAGE = "Email Address is required";
 export const noDataFound = {
     categories: {
@@ -58,7 +62,9 @@ export const CATEGORY_REQUIRED_MESSAGE = "Category is required";
 export const THUMBNAIL_REQUIRED_MESSAGE = "Thumbnail is required";
 export const NAME_REQUIRED_MESSAGE = "Name is required";
 export const PRICE_REQUIRED_MESSAGE = "Price is required";
+export const PRICE_INVALID_MESSAGE = "Enter a valid price";
 export const STOCK_REQUIRED_MESSAGE = "Stock is required";
+export const STOCK_INVALID_MESSAGE = "Enter a valid stock quantity";
 export const DESCRIPTION_REQUIRED_MESSAGE = "Description is required";
 export const editProduct = "Edit Product";
 export const addNewProduct = "Add New Product";

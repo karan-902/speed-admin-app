@@ -14,6 +14,7 @@ type EntityListProps<T extends { id: string }> = {
     onChange: (event: React.SyntheticEvent, value: any) => void;
     list: T[];
     columns: Field<T>[];
+    onRowClick?: (id: string) => void;
     tabs?: { label: string; value: string }[];
 };
 
@@ -26,11 +27,13 @@ function EntityList<T extends { id: string }>({
     onChange,
     hasMore,
     loadMore,
+    onRowClick,
     tabs = tabsConfig,
 }: EntityListProps<T>) {
     return (
         <Tab tabs={tabs} value={tabValue} onChange={onChange}>
             <VirtualizeTable
+                onRowClick={onRowClick}
                 columns={columns}
                 data={list}
                 header={header}

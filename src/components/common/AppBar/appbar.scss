@@ -1,12 +1,19 @@
 .appbar {
-  &.modal-app-bar {
-    .MuiToolbar-root {
-      height: 70px;
+    &.modal-app-bar {
+        .MuiToolbar-root {
+            height: 70px;
+        }
     }
-  }
-  &.MuiPaper-root {
-    background-color: #fff;
-    border-bottom: 1px solid #e4e9ee;
-    box-shadow: none;
-  }
+    .toolbar {
+        &.header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    &.MuiPaper-root {
+        background-color: #fff;
+        border-bottom: 1px solid #e4e9ee;
+        box-shadow: none;
+    }
 }
