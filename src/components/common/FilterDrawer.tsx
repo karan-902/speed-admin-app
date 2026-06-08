@@ -37,7 +37,7 @@ function FilterDrawer({
                 </button>
             </Box>
 
-            <Box customClass="filter-drawer-body">{children}</Box>
+            <Box customClass={"filter-drawer-body "}>{children}</Box>
 
             <Box customClass="filter-drawer-foot">
                 <Button

@@ -1,45 +1,43 @@
-import { List, MenuItem, type PopoverOrigin } from "@mui/material";
-import Popover from "../../components/common/Popover/Popover";
-import Box from "../../components/common/Box/Box";
-import Text from "../../components/common/Text/Text";
-
-interface MenuItemType {
+import React from "react";
+import Popover from "./Popover/Popover";
+import { List, type PopoverOrigin } from "@mui/material";
+import MenuItem from "./MenuItem/MenuItem";
+import Box from "./Box/Box";
+import Text from "./Text/Text";
+interface MenuItem {
     key: string;
     icon: React.ReactNode;
     label: string;
 }
-
 interface IMenuProps {
+    customClass?: string;
     anchorEl: HTMLElement | null;
+    anchorOrigin: PopoverOrigin;
+    transformOrigin: PopoverOrigin;
     onClose: () => void;
-    items: MenuItemType[];
+    data: MenuItem[];
     onAction: (key: string) => void;
 }
-const ANCHOR_ORIGIN: PopoverOrigin = {
-    vertical: "bottom",
-    horizontal: "right",
-};
-const TRANSFORM_ORIGIN: PopoverOrigin = {
-    vertical: "top",
-    horizontal: "right",
-};
-export default function AdminMenu({
+export default function PopoverMenu({
     anchorEl,
-    onClose,
+    data,
     onAction,
-    items,
+    onClose,
+    customClass,
+    anchorOrigin,
+    transformOrigin,
 }: IMenuProps) {
     return (
         <Popover
-            customClass="header-popover"
+            customClass={customClass}
             open={Boolean(anchorEl)}
             anchorEl={anchorEl}
             onClose={onClose}
-            anchorOrigin={ANCHOR_ORIGIN}
-            transformOrigin={TRANSFORM_ORIGIN}
+            anchorOrigin={anchorOrigin}
+            transformOrigin={transformOrigin}
         >
             <List>
-                {items.map((item) => (
+                {data.map((item) => (
                     <MenuItem
                         onClick={() => {
                             onAction(item.key);
@@ -47,7 +45,7 @@ export default function AdminMenu({
                         }}
                     >
                         <Box gap={1} customClass="flex items-center">
-                            {item.icon}
+                            {item.icon && item.icon}
                             <Text font="semiBold" size={14}>
                                 {item.label}
                             </Text>

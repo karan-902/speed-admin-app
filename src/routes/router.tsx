@@ -8,9 +8,9 @@ import ProductDetails from "../pages/product/ProductDetails";
 import CategoryDetails from "../pages/category/CategoryDetails";
 import Categories from "../pages/category/Categories";
 import Orders from "../pages/orders/Orders";
-import Users from "../pages/users/Users";
+import Users from "../pages/users";
 import Profile from "../pages/profile/Profile";
-import Dashboard from "../pages/admin/Dashboard";
+import Dashboard from "../pages/dashboard/Dashboard";
 
 function EcommerceRouter() {
     return (

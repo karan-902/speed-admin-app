@@ -22,15 +22,14 @@
     }
 
     &.chip-info {
-        background-color: $white !important;
+        background-color: $primaryOrang !important;
 
         .MuiChip-label {
-            color: $primaryOrang;
+            color: $white;
             font-weight: 400;
         }
     }
 
-    // progress (shipped) — muted blue
     &.chip-progress {
         background-color: $USDCCardBg !important;
         border: 1px solid $USDCCardBorder !important;
@@ -60,10 +59,10 @@
     // neutral (user / inactive / archived) — grey
     &.chip-neutral,
     &.archived-chip {
-        background-color: $backgroundHover !important;
+        background-color: $primaryBlue !important;
         border: 1px solid $lightCyanBlue !important;
         .MuiChip-label {
-            color: $greyText;
+            color: $white;
         }
     }
 }

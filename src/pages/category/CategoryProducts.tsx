@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { VirtuosoGrid } from "react-virtuoso";
 import { CircularProgress } from "@mui/material";
 import type { TCategoryProduct } from "../../utils/utils";
-import ListCard from "../product/ListCard";
+import ListCard from "../product/ProductCard";
 import Text from "../../components/common/Text/Text";
 import { list } from "../../components/messages";
 
@@ -40,7 +40,7 @@ interface CategoryProductListProps {
     onLoadMore?: () => void;
 }
 
-function CategoryProductList({
+export default function CategoryProducts({
     data,
     hasMore,
     loadingMore,
@@ -80,5 +80,3 @@ function CategoryProductList({
         </>
     );
 }
-
-export default CategoryProductList;

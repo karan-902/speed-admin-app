@@ -14,13 +14,12 @@ import classNames from "classnames";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import {
-    LayoutDashboard,
     LayoutGrid,
     Package,
     ShoppingBag,
     Users as UsersIcon,
 } from "lucide-react";
-import { DashboardIcon } from "../../components/constants";
+import { DashboardIcon } from "../../components/images";
 
 const ICON_MUTED = "#848b9e";
 
@@ -29,7 +28,7 @@ type NavItem = { text: string; icon: React.ReactNode; path: string };
 const MAIN_NAV: NavItem[] = [
     {
         text: "Dashboard",
-        icon: DashboardIcon(),
+        icon: <DashboardIcon />,
         path: "/",
     },
     {

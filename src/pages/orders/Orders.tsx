@@ -12,17 +12,9 @@ import {
 import { useReduxDispatch, useReduxSelector } from "../../redux/hooks";
 import { appendOrders, setOrders } from "../../redux/orders/orders.slice";
 import type { TOrder, TOrderStatus } from "../../utils/utils";
+import { orderStatusTabs } from "../../components/config";
 
 const LIMIT = 20;
-
-const ORDER_STATUS_TABS: { label: string; value: string }[] = [
-    { label: "All", value: "all" },
-    { label: "Pending", value: "PENDING" },
-    { label: "Confirmed", value: "CONFIRMED" },
-    { label: "Shipped", value: "SHIPPED" },
-    { label: "Delivered", value: "DELIVERED" },
-    { label: "Cancelled", value: "CANCELLED" },
-];
 
 const OrdersTableHeader = () => (
     <TableRow>
@@ -43,10 +35,8 @@ function Orders() {
     const [tabValue, setTabValue] = useState("all");
     const tabRef = useRef(tabValue);
     tabRef.current = tabValue;
-
     const orders = useReduxSelector((state) => state.orders.list);
     const dispatch = useReduxDispatch();
-
     const { load, reset, hasMoreRef } = usePaginatedList<TOrder>({
         buildPath: (cursor) => {
             const status = tabRef.current;
@@ -81,7 +71,7 @@ function Orders() {
                 loading={loading}
                 tabValue={tabValue}
                 onChange={onTabChange}
-                tabs={ORDER_STATUS_TABS}
+                tabs={orderStatusTabs}
                 columns={orderColumns}
                 header={OrdersTableHeader}
                 list={orders}

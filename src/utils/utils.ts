@@ -104,6 +104,15 @@ export type TCategoryProduct = {
     created_at: number;
     updated_at: number;
 };
+export type TProductFilters = {
+    categoryIds?: string[];
+    minPrice?: number;
+    maxPrice?: number;
+    maxStock?: number;
+    minStock?: number;
+    field?: string;
+    order?: string;
+};
 
 // ── Orders ────────────────────────────────────────────────────────────────────
 

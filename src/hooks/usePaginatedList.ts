@@ -1,5 +1,6 @@
 import { useCallback, useRef } from "react";
 import { callAPIInterface } from "../utils";
+import type { Method } from "axios";
 
 export type PaginatedResponse<T> = {
     has_more: boolean;
@@ -7,23 +8,28 @@ export type PaginatedResponse<T> = {
     page_id: number | null;
 };
 
-type Config<T> = {
+type Config<T, P> = {
+    method: Method;
+    buildBody?: () => P;
     buildPath: (cursor: string) => string;
     onFirstLoad: (data: T[]) => void;
     onAppend: (data: T[]) => void;
     setLoading: (v: boolean) => void;
 };
 
-export function usePaginatedList<T extends { id: string }>({
+export function usePaginatedList<T extends { id: string }, P = undefined>({
+    method,
+    buildBody,
     buildPath,
     onFirstLoad,
     onAppend,
     setLoading,
-}: Config<T>) {
+}: Config<T, P>) {
     const hasMoreRef = useRef(true);
     const endingBeforeRef = useRef<number | null>(null);
+    const buildBodyRef = useRef(buildBody);
+    buildBodyRef.current = buildBody;
     const isFetchingRef = useRef(false);
-
     const buildPathRef = useRef(buildPath);
     buildPathRef.current = buildPath;
     const onFirstLoadRef = useRef(onFirstLoad);
@@ -40,10 +46,12 @@ export function usePaginatedList<T extends { id: string }>({
         const cursor = endingBeforeRef.current
             ? `&ending_before=${endingBeforeRef.current}`
             : "";
+
         try {
-            const res = await callAPIInterface<void, PaginatedResponse<T>>(
-                "GET",
+            const res = await callAPIInterface<P, PaginatedResponse<T>>(
+                method,
                 buildPathRef.current(cursor),
+                buildBodyRef.current?.(),
             );
             isFirstLoad
                 ? onFirstLoadRef.current(res.data)

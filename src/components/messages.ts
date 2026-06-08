@@ -27,6 +27,7 @@ export const register = "Register";
 export const profileText = "Profile";
 export const logoutText = "Logout";
 export const loadingProductForm = "Loading Product Form...";
+export const loadingDelete = "Deleting....";
 export const loadingDashboardText = "Loading Dashboard...";
 export const addingUserText = "Adding User...";
 export const addUserTitle = "Add User";
@@ -53,11 +54,9 @@ export const phoneNumberId = "phone_number";
 export const emailId = "email";
 export const passwordId = "password";
 export const addImages = "Add Images";
-export const dialogText = {
-    archive:
-        "Archiving will hide this product from new purchases. Are you sure you want to archive this product?",
-    delete: "Deleting will permanently remove this product and it cannot be recovered. Are you sure you want to delete this product?",
-};
+export const archiveDialogDescription =
+    "Archiving will hide this product from new purchases. Are you sure you want to archive this product?";
+
 export const CATEGORY_REQUIRED_MESSAGE = "Category is required";
 export const THUMBNAIL_REQUIRED_MESSAGE = "Thumbnail is required";
 export const NAME_REQUIRED_MESSAGE = "Name is required";
@@ -96,6 +95,9 @@ export const productsPageDescription =
     "Manage, organize, and update all your products from one place.";
 export const productsActionButtonLabel = "Add New Product";
 export const productsPageTitle = "Products";
+export const selectedLabel = "selected";
+export const deleteSelectedLabel = "Delete selected";
+export const deselectAllLabel = "Deselect all";
 export const categoriesActionButtonLabel = "Add New Category";
 export const categoriesPageTitle = "Categories";
 export const categoriesPageDescription =
@@ -112,12 +114,18 @@ export const usersPageDescription =
 export const usersActionButtonLabel = "Add User";
 
 export const profilePageTitle = "Profile";
-export const profilePageDescription = "View and update your profile information.";
+export const profilePageDescription =
+    "View and update your profile information.";
 export const editProfileLabel = "Edit Profile";
 export const profileFirstNameLabel = "First Name";
 export const profileLastNameLabel = "Last Name";
 export const profilePhoneLabel = "Phone";
 export const profileEmailLabel = "Email";
 export const profileRoleLabel = "Role";
+export const deleteDialogDescription =
+    "Deleting will permanently remove and cannot be undone.";
+export const dashboardTitle = "Dashboard";
+export const totalRevenue = "Total Revenue";
+export const revenue = "Revenue";
 export const bulkDeleteDialogText = (count: number) =>
     `Delete ${count} selected product(s)? This action is permanent and cannot be undone.`;

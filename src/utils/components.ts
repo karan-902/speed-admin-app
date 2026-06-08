@@ -1,5 +1,5 @@
 import type { BoxProps, ButtonProps, InputBaseProps } from "@mui/material";
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 import type { buttonIcons } from "../components/images";
 
 export type AlertMessageProps = {
@@ -104,6 +104,8 @@ export type TCategorySummeryObj = {
     spotlighted_products: number;
 };
 export type TProductDetailsObj = {
+    id: string;
+    name: string;
     visibility: boolean;
     spotlight: boolean;
     price: number;
@@ -169,4 +171,32 @@ export type TProfileForm = {
     first_name: string;
     last_name: string;
     phone: string;
+};
+
+export type TStats = {
+    label: string;
+    value: number;
+    changePct?: number;
+    icon: JSX.Element;
+    tone: string;
+};
+
+export type CommonTab = { label: string; value: string };
+
+export type TLoginForm = {
+    email: string;
+    password: string;
+};
+
+export type TCommonFilter = {
+    categoryIds?: string[];
+    minPrice?: number;
+    maxPrice?: number;
+    minStock?: number;
+    maxStock?: number;
+    price?: number;
+    stock?: number;
+    createdOn?: number;
+    sortField?: string;
+    sortOrder?: "asc" | "desc";
 };

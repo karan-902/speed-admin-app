@@ -16,6 +16,9 @@
             flex-shrink: 0;
         }
     }
+    &.filter-sort-title {
+        color: $primaryBlue;
+    }
     &.divider {
         height: 30px;
         padding-left: 19px;

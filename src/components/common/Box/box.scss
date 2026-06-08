@@ -6,6 +6,13 @@
     &.justify-center {
         justify-content: center;
     }
+    &.justify-between {
+        justify-content: space-between;
+    }
+    &.align-start {
+        align-items: flex-start;
+    }
+
     &.header {
         left: 0;
         position: fixed;
@@ -230,6 +237,18 @@
     }
     &.dashboard-chart {
         height: 300px;
+    }
+
+    &.filter-sort-row {
+        margin-top: 8px;
+        flex-direction: column;
+    }
+    &.filter-sort-col {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
     }
 
     &.app-root {

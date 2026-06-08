@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import formatPrice from "../../utils/formatePrice";
 import type { RevenuePoint } from "../../types";
+import formateTime from "../../utils/formateTime";
 
 ChartJS.register(
     CategoryScale,
@@ -28,37 +29,14 @@ const GREY = "#848b9e";
 const GRID = "#f2f5f7";
 const DARK = "#0a193e";
 
-const MONTHS = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-];
-
-// "DD-MM-YYYY" → "DD MMM"
-const formatDateLabel = (date: string) => {
-    const [dd, mm] = date.split("-");
-    const month = MONTHS[Number(mm) - 1] ?? mm;
-    return `${dd} ${month}`;
-};
-
 interface RevenueChartProps {
     points: RevenuePoint[];
 }
 
 function RevenueChart({ points }: RevenueChartProps) {
-    console.log(points);
     const data = useMemo(
         () => ({
-            labels: points.map((p) => formatDateLabel(p.date)),
+            labels: points.map((p) => formateTime(Number(p.date))),
             datasets: [
                 {
                     data: points.map((p) => p.revenue),

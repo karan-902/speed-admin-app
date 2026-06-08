@@ -72,7 +72,11 @@ function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
                     ...values,
                     phone: values.phone ? Number(values.phone) : undefined,
                 };
-                await callAPIInterface<TCreateAdmin, TUser>("POST", "/users", payload);
+                await callAPIInterface<TCreateAdmin, TUser>(
+                    "POST",
+                    "/users",
+                    payload,
+                );
                 onSuccess();
                 handleClose();
             } catch (error) {
@@ -123,7 +127,7 @@ function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
         <Modal
             open={open}
             title={addUserTitle}
-            actionButtonLabel="Add"
+            buttonLabel="Add"
             onClose={handleClose}
             onSubmit={handleSubmit}
             isForm
@@ -138,18 +142,38 @@ function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
                 <>
                     <Box customClass="flex" gap={2} mt={1}>
                         <Box sx={{ flex: 1 }}>
-                            <Input {...buildProps("first_name", firstName, firstNamePlaceHolder)} />
+                            <Input
+                                {...buildProps(
+                                    "first_name",
+                                    firstName,
+                                    firstNamePlaceHolder,
+                                )}
+                            />
                         </Box>
                         <Box sx={{ flex: 1 }}>
-                            <Input {...buildProps("last_name", lastName, lastNamePlaceHolder)} />
+                            <Input
+                                {...buildProps(
+                                    "last_name",
+                                    lastName,
+                                    lastNamePlaceHolder,
+                                )}
+                            />
                         </Box>
                     </Box>
-                    <Input {...buildProps("email", emailAddress, emailPlaceHolder)} />
                     <Input
-                        {...buildProps("password", password, passwordPlaceHolder)}
+                        {...buildProps("email", emailAddress, emailPlaceHolder)}
+                    />
+                    <Input
+                        {...buildProps(
+                            "password",
+                            password,
+                            passwordPlaceHolder,
+                        )}
                         type="password"
                     />
-                    <Input {...buildProps("phone", phone, phonePlaceHolder, true)} />
+                    <Input
+                        {...buildProps("phone", phone, phonePlaceHolder, true)}
+                    />
                 </>
             )}
         </Modal>

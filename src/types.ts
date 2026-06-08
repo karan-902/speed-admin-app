@@ -1,6 +1,6 @@
 import type { TImage } from "./utils/components";
 
-export type RangeType = "today" | "yesterday" | "2d" | "7d" | "30d" | "1y";
+export type TTimeRange = "today" | "yesterday" | "2d" | "7d" | "30d" | "1y";
 
 export type RevenuePoint = {
     date: string; // "DD-MM-YYYY"
@@ -56,7 +56,7 @@ export type TProductPayload = {
 
 export type TProductArchivePayload = {
     id?: string;
-    visiblity: boolean;
+    visibility: boolean;
 };
 export type TProductSpotlightPayload = {
     id?: string;

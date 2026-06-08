@@ -87,7 +87,7 @@ function ProfileEditModal({
         <Modal
             open={open}
             title="Edit Profile"
-            actionButtonLabel="Save"
+            buttonLabel="Save"
             disabled={disabled}
             onClose={handleClose}
             onSubmit={formik.handleSubmit}

@@ -36,7 +36,15 @@ function Categories() {
     const categories = useReduxSelector((state) => state.category.categories);
     const isFetching = useRef<boolean>(false);
     const dispatch = useReduxDispatch();
-    const { tabValue, onTabChange, loading, setLoading, isCreateOpen, openCreate, closeCreate } = useEntityList();
+    const {
+        tabValue,
+        onTabChange,
+        loading,
+        setLoading,
+        isCreateOpen,
+        openCreate,
+        closeCreate,
+    } = useEntityList();
     const getCategories = useCallback(async () => {
         if (isFetching.current) return;
         isFetching.current = true;
@@ -82,7 +90,6 @@ function Categories() {
                     list={categories}
                 />
             </EntityListPage>
-
             <CategoryForm open={isCreateOpen} onClose={closeCreate} />
         </>
     );

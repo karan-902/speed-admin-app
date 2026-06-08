@@ -73,7 +73,7 @@ export default function CategoryForm({
             title={editMode ? "Edit Category" : "Add New Category"}
             className="category-create-modal"
             open={open}
-            actionButtonLabel={editMode ? "Save" : "Add"}
+            buttonLabel={editMode ? "Save" : "Add"}
             isForm
             onSubmit={formik.handleSubmit}
             onClose={handleClose}
