@@ -1,0 +1,102 @@
+@use "../../../assets/default.scss" as *;
+
+// ── TextField (input trigger) ─────────────────────────────────────────────────
+
+.custom-date-picker-textfield {
+    width: 100%;
+
+    .MuiPickersInputBase-sectionContent {
+        text-transform: lowercase;
+    }
+
+    .MuiPickersSectionList-section,
+    .MuiPickersInputBase-sectionContent,
+    .MuiPickersInputBase-sectionBefore,
+    .MuiPickersInputBase-sectionAfter,
+    input {
+        font-family: $fontOutfitRegular;
+        color: $darkIndigo;
+    }
+
+    .MuiPickersInputBase-sectionsContainer {
+        padding-top: 10.5px;
+        padding-bottom: 10.5px;
+    }
+
+    .MuiPickersOutlinedInput-root {
+        margin: 0;
+
+        &.Mui-error .MuiPickersOutlinedInput-notchedOutline {
+            border: 1px solid $paleRed;
+            box-shadow: none;
+        }
+
+        &.Mui-focused {
+            outline: 3px solid $outlineBlue !important;
+            border-radius: 4px;
+        }
+
+        &.Mui-focused .MuiPickersOutlinedInput-notchedOutline {
+            border-color: transparent !important;
+            box-shadow: none;
+        }
+
+        &:hover:not(.Mui-focused):not(.Mui-error) .MuiPickersOutlinedInput-notchedOutline {
+            border: 1px solid transparent !important;
+        }
+    }
+
+    .MuiPickersOutlinedInput-notchedOutline {
+        border: 1px solid transparent;
+        box-shadow:
+            0 4px 4px -2px rgba(11, 37, 75, 0.12),
+            0 0 0 1px rgba(11, 37, 75, 0.08);
+    }
+}
+
+// ── Calendar popup ────────────────────────────────────────────────────────────
+
+.custom-date-picker {
+    box-shadow: 0 4px 7px 3px rgba(11, 37, 75, 0.12);
+    border-radius: 1px;
+    border: 1px solid $lightCyanBlue;
+
+    .MuiDateCalendar-root {
+        font-family: $fontOutfitRegular;
+
+        .MuiPickersDay-today {
+            border: 1px solid $sunFlowerYellow !important;
+            background-color: transparent;
+        }
+
+        .MuiPickersFadeTransitionGroup-root [aria-live="polite"] {
+            font-family: $fontOutfitMedium;
+        }
+
+        .MuiYearCalendar-button {
+            font-size: 16px;
+        }
+
+        .MuiPickersDay-root {
+            font-size: 14px;
+        }
+
+        .MuiPickersDay-root,
+        .MuiYearCalendar-button {
+            color: rgba(0, 0, 0, 0.87);
+
+            &:hover {
+                background-color: $paleGray;
+            }
+
+            &.Mui-disabled {
+                color: rgba(0, 0, 0, 0.38);
+            }
+        }
+    }
+
+    .Mui-selected {
+        background-color: $sunFlowerYellow !important;
+        color: $darkIndigo !important;
+    }
+}

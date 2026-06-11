@@ -17,6 +17,7 @@ import {
     LayoutGrid,
     Package,
     ShoppingBag,
+    Truck,
     Users as UsersIcon,
 } from "lucide-react";
 import { DashboardIcon } from "../../components/images";
@@ -45,6 +46,11 @@ const MAIN_NAV: NavItem[] = [
         text: "Orders",
         icon: <ShoppingBag size={18} color={ICON_MUTED} />,
         path: "/orders",
+    },
+    {
+        text: "Deliveries",
+        icon: <Truck size={18} color={ICON_MUTED} />,
+        path: "/deliveries",
     },
     {
         text: "Users",

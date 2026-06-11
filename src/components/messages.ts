@@ -106,8 +106,10 @@ export const categoriesPageDescription =
 export const ordersPageTitle = "Orders";
 export const ordersPageDescription =
     "View and manage all customer orders from one place.";
-export const ordersActionButtonLabel = "View Order";
+export const ordersActionButtonLabel = "Create Delivery";
 
+export const userRoleLabel = "Role";
+export const ROLE_REQUIRED_MESSAGE = "Role is required";
 export const usersPageTitle = "Users";
 export const usersPageDescription =
     "View and manage all registered users from one place.";
@@ -127,5 +129,43 @@ export const deleteDialogDescription =
 export const dashboardTitle = "Dashboard";
 export const totalRevenue = "Total Revenue";
 export const revenue = "Revenue";
-export const bulkDeleteDialogText = (count: number) =>
-    `Delete ${count} selected product(s)? This action is permanent and cannot be undone.`;
+
+// ── Deliveries ────────────────────────────────────────────────────────────────
+export const deliveriesPageTitle = "Deliveries";
+export const deliveriesPageDescription =
+    "Track and manage all deliveries from one place.";
+export const createDeliveryTitle = "Create Delivery";
+export const updateDeliveryTitle = "Update Delivery";
+export const addTrackingEventTitle = "Add Tracking Event";
+export const orderIdLabel = "Order ID";
+export const orderIdPlaceholder = "Enter Order ID";
+export const estimatedDeliveryLabel = "Estimated Delivery Date";
+export const carrierLabel = "Carrier";
+export const carrierPlaceholder = "e.g. BlueDart, Delhivery";
+export const trackingNumberLabel = "Tracking Number";
+export const trackingNumberPlaceholder = "Enter tracking number";
+export const assignedToLabel = "Delivery Partner";
+export const assignedToPlaceholder = "usr_...";
+export const eventStatusLabel = "Status";
+export const eventMessageLabel = "Message";
+export const eventMessagePlaceholder = "e.g. Package arrived at hub";
+export const eventLocationLabel = "Location";
+export const eventLocationPlaceholder = "e.g. Mumbai";
+export const ORDER_ID_REQUIRED = "Order ID is required";
+export const ESTIMATED_AT_REQUIRED = "Estimated delivery date is required";
+export const STATUS_REQUIRED = "Status is required";
+export const MESSAGE_REQUIRED = "Message is required";
+export const LOCATION_REQUIRED = "Location is required";
+
+// ── Status pages (404 / 403) ──────────────────────────────────────────────────
+export const notFoundCode = "404";
+export const notFoundTitle = "Page not found";
+export const notFoundDescription =
+    "The page you're looking for doesn't exist or may have been moved to another place.";
+export const backToDashboard = "Back to Dashboard";
+
+export const unauthorizedCode = "403";
+export const unauthorizedTitle = "Access denied";
+export const unauthorizedDescription =
+    "You don't have permission to view this page. Please sign in with an authorized account.";
+export const backToLogin = "Back to Login";

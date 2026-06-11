@@ -5,8 +5,8 @@ import Button from "./Button/Button";
 
 interface EntityListProps {
     entity: string;
-    buttonLabel: string;
-    onSubmit: () => void;
+    buttonLabel?: string;
+    onSubmit?: () => void;
     description: string;
     onFilter?: () => void;
     children: React.ReactNode;
@@ -47,15 +47,17 @@ export default function EntityListPage({
                             Filter
                         </button>
                     )}
-                    <Button
-                        customClass="button-create"
-                        variant="outlined"
-                        size="medium"
-                        label={buttonLabel}
-                        onClick={onSubmit}
-                        iconPosition="start"
-                        icon={"add"}
-                    />
+                    {buttonLabel && onSubmit && (
+                        <Button
+                            customClass="button-create"
+                            variant="outlined"
+                            size="medium"
+                            label={buttonLabel}
+                            onClick={onSubmit}
+                            iconPosition="start"
+                            icon={"add"}
+                        />
+                    )}
                 </Box>
             </Box>
             <Box customClass="entity-content">{children}</Box>

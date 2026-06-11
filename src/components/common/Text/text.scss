@@ -244,6 +244,36 @@
         margin-bottom: 4px;
         border-bottom: 1px solid $lightCyanBlue;
     }
+    &.status-code {
+        display: block;
+        font-size: 76px;
+        line-height: 1 !important;
+        letter-spacing: -2px;
+        font-family: $fontOutfitBold;
+        margin-bottom: 6px;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(135deg, $primaryBlue, $darkIndigo);
+
+        &.code-danger {
+            background-image: linear-gradient(135deg, $error, $darkIndigo);
+        }
+    }
+    &.status-title {
+        font-size: $font22;
+        font-family: $fontOutfitSemiBold;
+        color: $darkIndigo;
+        margin-bottom: 8px;
+    }
+    &.status-description {
+        max-width: 340px;
+        font-size: $font15;
+        color: $greyText;
+        font-family: $fontOutfitRegular;
+        line-height: 1.6 !important;
+        margin-bottom: 28px;
+    }
 }
 
 .selection-count-badge {

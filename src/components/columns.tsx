@@ -2,6 +2,7 @@ import type {
     Field,
     TCategoryColumns,
     TCategorySections,
+    TDeliveryColumns,
     TOrderColumns,
     TProductColumns,
     TProductSections,
@@ -208,12 +209,20 @@ export const categoryColumns: Field<TCategoryColumns>[] = [
     },
 ];
 
-const toTitleCase = (value: string) =>
+export const toTitleCase = (value: string) =>
     value
         ? value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
         : value;
 
-const ORDER_STATUS_TONE: Record<string, string> = {
+export const DELIVERY_STATUS_TONE: Record<string, string> = {
+    PICKUP_SCHEDULED: "chip-info",
+    OUT_FOR_DELIVERY: "chip-progress",
+    DELIVERED: "chip-success",
+    FAILED: "chip-danger",
+    RETURNED: "chip-neutral",
+};
+
+export const ORDER_STATUS_TONE: Record<string, string> = {
     PENDING: "chip-warning",
     CONFIRMED: "chip-info",
     SHIPPED: "chip-progress",
@@ -221,7 +230,7 @@ const ORDER_STATUS_TONE: Record<string, string> = {
     CANCELLED: "chip-danger",
 };
 
-const PAYMENT_STATUS_TONE: Record<string, string> = {
+export const PAYMENT_STATUS_TONE: Record<string, string> = {
     PENDING: "chip-warning",
     SUCCESS: "chip-success",
     FAILED: "chip-danger",
@@ -298,7 +307,7 @@ export const userColumns: Field<TUserColumns>[] = [
     {
         key: "id",
         label: "User ID",
-        width: 230,
+        width: 140,
         render: (row) => (
             <Box customClass="id-cell" onClick={(e) => e.stopPropagation()}>
                 <Input
@@ -314,18 +323,18 @@ export const userColumns: Field<TUserColumns>[] = [
     {
         key: "email",
         label: "Email",
-        width: 230,
+        width: 110,
         render: (row) => <Text>{row.email}</Text>,
     },
     {
         label: "Name",
-        width: 180,
+        width: 100,
         render: (row) => <Text>{`${row.first_name} ${row.last_name}`}</Text>,
     },
     {
         key: "role",
         label: "Role",
-        width: 120,
+        width: 100,
         render: (row) => (
             <Chip
                 customClass={USER_ROLE_TONE[row.role] ?? "chip-neutral"}
@@ -336,7 +345,7 @@ export const userColumns: Field<TUserColumns>[] = [
     {
         key: "is_active",
         label: "Status",
-        width: 120,
+        width: 100,
         render: (row) => (
             <Chip
                 customClass={row.is_active ? "chip-success" : "chip-neutral"}
@@ -347,7 +356,77 @@ export const userColumns: Field<TUserColumns>[] = [
     {
         key: "created_at",
         label: "Joined",
-        width: 150,
+        width: 100,
+        render: (row) => formateTime(row.created_at),
+    },
+];
+
+export const deliveryColumns: Field<TDeliveryColumns>[] = [
+    {
+        key: "id",
+        label: "Delivery ID",
+        width: 230,
+        render: (row) => (
+            <Box customClass="id-cell" onClick={(e) => e.stopPropagation()}>
+                <Input
+                    elementClass="category-input-element"
+                    customClass="table-input"
+                    value={row.id}
+                    readOnly
+                />
+                <Copy value={row.id} />
+            </Box>
+        ),
+    },
+    {
+        key: "order_id",
+        label: "Order ID",
+        width: 230,
+        render: (row) => (
+            <Box customClass="id-cell" onClick={(e) => e.stopPropagation()}>
+                <Input
+                    elementClass="category-input-element"
+                    customClass="table-input"
+                    value={row.order_id}
+                    readOnly
+                />
+                <Copy value={row.order_id} />
+            </Box>
+        ),
+    },
+    {
+        key: "status",
+        label: "Status",
+        width: 160,
+        render: (row) => (
+            <Chip
+                customClass={DELIVERY_STATUS_TONE[row.status] ?? "chip-neutral"}
+                label={row.status.replace(/_/g, " ")}
+            />
+        ),
+    },
+    {
+        key: "carrier",
+        label: "Carrier",
+        width: 130,
+        render: (row) => <Text>{row.carrier ?? "—"}</Text>,
+    },
+    {
+        key: "tracking_number",
+        label: "Tracking No.",
+        width: 160,
+        render: (row) => <Text>{row.tracking_number ?? "—"}</Text>,
+    },
+    {
+        key: "estimated_at",
+        label: "Est. Delivery",
+        width: 130,
+        render: (row) => (row.estimated_at ? formateTime(row.estimated_at) : "—"),
+    },
+    {
+        key: "created_at",
+        label: "Created On",
+        width: 130,
         render: (row) => formateTime(row.created_at),
     },
 ];
@@ -380,6 +459,12 @@ export const productColumns: Field<TProductColumns>[] = [
         label: "Price",
         width: 130,
         render: (row) => formatPrice(row.price),
+    },
+    {
+        key: "stock",
+        label: "Stock",
+        width: 110,
+        render: (row) => row.stock,
     },
     {
         key: "visibility",

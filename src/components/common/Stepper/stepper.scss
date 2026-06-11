@@ -1,0 +1,73 @@
+@use "../../../assets/default.scss" as *;
+
+.custom-step-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font12;
+    font-family: $fontOutfitSemiBold;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &.step-completed {
+        background-color: $primaryBlue;
+        color: $white;
+        border: 2px solid $primaryBlue;
+    }
+
+    &.step-active {
+        background-color: $white;
+        color: $primaryBlue;
+        border: 2px solid $primaryBlue;
+        box-shadow: 0 0 0 4px rgba($primaryBlue, 0.1);
+    }
+
+    &.step-pending {
+        background-color: $white;
+        color: $greyText;
+        border: 2px solid $lightCyanBlue;
+    }
+
+    &.step-past {
+        background-color: #c8cdd8;
+        color: $white;
+        border: 2px solid #c8cdd8;
+    }
+
+    &.step-error {
+        background-color: $lightRed;
+        color: $paleRed;
+        border: 2px solid $paleRed;
+    }
+}
+
+.stepper-step-label {
+    font-family: $fontOutfitMedium !important;
+    font-size: $font13 !important;
+
+    &.active {
+        color: $primaryBlue !important;
+        font-family: $fontOutfitSemiBold !important;
+    }
+
+    &.completed {
+        color: $darkIndigo !important;
+    }
+
+    &.pending {
+        color: $greyText !important;
+    }
+
+    &.error {
+        color: $paleRed !important;
+    }
+}
+
+.stepper-step-description {
+    font-size: $font12 !important;
+    margin-top: 2px !important;
+    color: $greyText;
+}
