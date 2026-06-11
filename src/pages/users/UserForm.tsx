@@ -1,8 +1,11 @@
 import { useFormik } from "formik";
 import { object, string } from "yup";
+import { MenuItem } from "@mui/material";
 import Modal from "../../components/common/Modal/Modal";
 import Input from "../../components/common/Input/Input";
 import Box from "../../components/common/Box/Box";
+import Label from "../../components/common/Label/Label";
+import SelectData from "../../components/common/Select/Select";
 import {
     emailAddress,
     emailPlaceHolder,
@@ -22,8 +25,11 @@ import {
     PHONE_LENGTH_MESSAGE,
     addingUserText,
     addUserTitle,
+    userRoleLabel,
+    ROLE_REQUIRED_MESSAGE,
 } from "../../components/messages";
-import type { TCreateAdmin } from "../../types";
+import { USER_ROLE_OPTIONS } from "../../components/config";
+import type { TCreateAdmin, TUserRole } from "../../types";
 import { callAPIInterface } from "../../utils";
 import type { TUser } from "../../utils/utils";
 import ComponentLoader from "../../components/common/Loader/ComponentLoader";
@@ -34,6 +40,7 @@ type UserFormValues = {
     first_name: string;
     last_name: string;
     phone: string;
+    role: TUserRole | "";
 };
 
 interface IUserFormProps {
@@ -48,6 +55,7 @@ const initialValues: UserFormValues = {
     first_name: "",
     last_name: "",
     phone: "",
+    role: "",
 };
 
 const userSchema = object({
@@ -60,6 +68,7 @@ const userSchema = object({
     phone: string()
         .optional()
         .matches(/^\d{10}$/, PHONE_LENGTH_MESSAGE),
+    role: string().required(ROLE_REQUIRED_MESSAGE),
 });
 
 function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
@@ -71,6 +80,7 @@ function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
                 const payload: TCreateAdmin = {
                     ...values,
                     phone: values.phone ? Number(values.phone) : undefined,
+                    role: values.role as TUserRole,
                 };
                 await callAPIInterface<TCreateAdmin, TUser>(
                     "POST",
@@ -89,6 +99,8 @@ function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
         handleSubmit,
         handleChange,
         handleBlur,
+        setFieldValue,
+        setFieldTouched,
         values,
         touched,
         errors,
@@ -104,7 +116,7 @@ function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
     };
 
     const buildProps = (
-        field: keyof UserFormValues,
+        field: keyof Omit<UserFormValues, "role">,
         label: string,
         placeholder: string,
         optional = false,
@@ -140,8 +152,8 @@ function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
                 />
             ) : (
                 <>
-                    <Box customClass="flex" gap={2} mt={1}>
-                        <Box sx={{ flex: 1 }}>
+                    <Box customClass="flex user-form-name-row">
+                        <Box customClass="user-form-half">
                             <Input
                                 {...buildProps(
                                     "first_name",
@@ -150,7 +162,7 @@ function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
                                 )}
                             />
                         </Box>
-                        <Box sx={{ flex: 1 }}>
+                        <Box customClass="user-form-half">
                             <Input
                                 {...buildProps(
                                     "last_name",
@@ -174,6 +186,28 @@ function UserForm({ open, onClose, onSuccess }: IUserFormProps) {
                     <Input
                         {...buildProps("phone", phone, phonePlaceHolder, true)}
                     />
+                    <Box className="input-element">
+                        <Label label={userRoleLabel} />
+                        <SelectData
+                            customClass="login-input"
+                            placeholder="Select role"
+                            value={values.role}
+                            error={!!(touched.role && errors.role)}
+                            helperText={
+                                touched.role ? errors.role : undefined
+                            }
+                            onChange={(e) =>
+                                setFieldValue("role", e.target.value)
+                            }
+                            onBlur={() => setFieldTouched("role", true)}
+                        >
+                            {USER_ROLE_OPTIONS.map((opt) => (
+                                <MenuItem key={opt.value} value={opt.value}>
+                                    {opt.label}
+                                </MenuItem>
+                            ))}
+                        </SelectData>
+                    </Box>
                 </>
             )}
         </Modal>

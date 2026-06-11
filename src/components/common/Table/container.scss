@@ -2,10 +2,10 @@
 .table-container {
     overflow-x: hidden !important;
     &.data-table-container {
-        .MuiTableBody-root:empty,
-        .MuiTableBody-root tr:only-child td {
-            text-align: center;
-        }
+        // .MuiTableBody-root:empty,
+        // // .MuiTableBody-root tr:only-child td {
+        // //     text-align: center;
+        // // }
         .table-header {
             display: table-header-group;
             min-width: 0;

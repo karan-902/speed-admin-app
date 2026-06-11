@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import UserForm from "./UserForm";
-import { TableCell, TableRow } from "@mui/material";
 import EntityListPage from "../../components/common/EntityListPage";
 import EntityList from "../../components/common/EntityList";
+import ColumnsTableHeader from "../../components/common/ColumnsTableHeader";
 import { userColumns } from "../../components/columns";
 import { usePaginatedList } from "../../hooks/usePaginatedList";
+import { useEntityList } from "../../hooks/useEntityList";
 import {
     usersActionButtonLabel,
     usersPageDescription,
@@ -22,31 +23,23 @@ const USER_ROLE_TABS: { label: string; value: string }[] = [
     { label: "User", value: "USER" },
 ];
 
-const UsersTableHeader = () => (
-    <TableRow>
-        {userColumns.map((col, i) => (
-            <TableCell
-                key={col.label ?? i}
-                component="th"
-                style={col.width ? { width: col.width } : undefined}
-            >
-                {col.label}
-            </TableCell>
-        ))}
-    </TableRow>
-);
-
 function Users() {
-    const [loading, setLoading] = useState(false);
-    const [tabValue, setTabValue] = useState("all");
-    const [isCreateOpen, setIsCreateOpen] = useState(false);
-    const tabRef = useRef(tabValue);
-    tabRef.current = tabValue;
+    const {
+        tabValue,
+        tabRef,
+        loading,
+        setLoading,
+        onTabChange,
+        isCreateOpen,
+        openCreate,
+        closeCreate,
+    } = useEntityList();
 
     const users = useReduxSelector((state) => state.users.list);
     const dispatch = useReduxDispatch();
 
     const { load, reset, hasMoreRef } = usePaginatedList<TUser>({
+        method: "GET",
         buildPath: (cursor) => {
             const role = tabRef.current;
             const roleParam = role !== "all" ? `&role=${role}` : "";
@@ -67,35 +60,32 @@ function Users() {
         refreshList();
     }, [tabValue]);
 
-    const onTabChange = (_: React.SyntheticEvent, value: string) =>
-        setTabValue(value);
-
     return (
         <>
-        <EntityListPage
-            entity={usersPageTitle}
-            buttonLabel={usersActionButtonLabel}
-            description={usersPageDescription}
-            onSubmit={() => setIsCreateOpen(true)}
-        >
-            <EntityList
-                hasMore={hasMoreRef.current}
-                loadMore={load}
-                loading={loading}
-                tabValue={tabValue}
-                onChange={onTabChange}
-                tabs={USER_ROLE_TABS}
-                columns={userColumns}
-                header={UsersTableHeader}
-                list={users}
-            />
-        </EntityListPage>
+            <EntityListPage
+                entity={usersPageTitle}
+                buttonLabel={usersActionButtonLabel}
+                description={usersPageDescription}
+                onSubmit={openCreate}
+            >
+                <EntityList
+                    hasMore={hasMoreRef.current}
+                    loadMore={load}
+                    loading={loading}
+                    tabValue={tabValue}
+                    onChange={onTabChange}
+                    tabs={USER_ROLE_TABS}
+                    columns={userColumns}
+                    header={() => <ColumnsTableHeader columns={userColumns} />}
+                    list={users}
+                />
+            </EntityListPage>
 
-        <UserForm
-            open={isCreateOpen}
-            onClose={() => setIsCreateOpen(false)}
-            onSuccess={refreshList}
-        />
+            <UserForm
+                open={isCreateOpen}
+                onClose={closeCreate}
+                onSuccess={refreshList}
+            />
         </>
     );
 }

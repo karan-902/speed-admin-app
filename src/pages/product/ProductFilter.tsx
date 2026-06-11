@@ -4,11 +4,6 @@ import FilterDrawer from "../../components/common/FilterDrawer";
 import Input from "../../components/common/Input/Input";
 import SelectData from "../../components/common/Select/Select";
 import MenuItem from "../../components/common/MenuItem/MenuItem";
-import Box from "../../components/common/Box/Box";
-import Text from "../../components/common/Text/Text";
-import { SORT_SELECTS } from "../../components/config";
-
-export type SortOrder = "asc" | "desc";
 
 export type ProductFilters = {
     categoryIds?: string[];
@@ -45,21 +40,21 @@ interface ProductFilterProps {
 
 function ProductFilter({ open, onClose, onApply }: ProductFilterProps) {
     const categories = useReduxSelector((state) => state.category.categories);
-    const { categoryIds, maxPrice, maxStock, minPrice, minStock } =
-        useReduxSelector((state) => state.common.filters);
+    const applied = useReduxSelector((state) => state.common.filters);
     const hasCategories = categories.length > 0;
 
-    const [draft, setDraft] = useState<ProductFilters>({
-        categoryIds: categoryIds,
-        maxPrice: maxPrice ? String(maxPrice) : "",
-        maxStock: maxStock ? String(maxStock) : "",
-        minPrice: minPrice ? String(minPrice) : "",
-        minStock: minStock ? String(minStock) : "",
-    });
+    const [draft, setDraft] = useState<ProductFilters>(INITIAL_FILTERS);
+
+    // seed the draft with the applied filters each time the drawer opens
     useEffect(() => {
-        if (open) {
-            setDraft({});
-        }
+        if (!open) return;
+        setDraft({
+            categoryIds: applied.categoryIds ?? [],
+            minPrice: applied.minPrice ? String(applied.minPrice) : "",
+            maxPrice: applied.maxPrice ? String(applied.maxPrice) : "",
+            minStock: applied.minStock ? String(applied.minStock) : "",
+            maxStock: applied.maxStock ? String(applied.maxStock) : "",
+        });
     }, [open]);
 
     const setNumber = (name: keyof ProductFilters, value: string) =>
@@ -70,10 +65,7 @@ function ProductFilter({ open, onClose, onApply }: ProductFilterProps) {
             open={open}
             onClose={onClose}
             onClear={() => setDraft(INITIAL_FILTERS)}
-            onApply={() => {
-                console.log(draft, "DRAFT");
-                onApply(draft);
-            }}
+            onApply={() => onApply(draft)}
         >
             <SelectData
                 multiple

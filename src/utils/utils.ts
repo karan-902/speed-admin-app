@@ -13,7 +13,7 @@ export type TLoginResponse = {
     first_name: string;
     last_name: string;
     email: string;
-    role: string;
+    role: "ADMIN" | "SUPER_ADMIN";
     is_active: boolean;
     created_at: string;
     access_token: string;
@@ -159,6 +159,16 @@ export type TOrderDetail = TOrder & {
     paid_at: number | null;
     address: TOrderAddress;
     items: TOrderItem[];
+    delivery_details?: {
+        id: string;
+        carrier: string | null;
+        tracking_number: string | null;
+        status: string;
+        estimated_at: number | null;
+        delivered_at: number | null;
+        created_at: number;
+    } | null;
+    user: { first_name: string; last_name: string; email: string } | undefined;
 };
 
 export type TOrdersResponse = {
@@ -176,7 +186,7 @@ export type TUser = {
     first_name: string;
     last_name: string;
     phone: number | null;
-    role: "ADMIN" | "USER";
+    role: "SUPER_ADMIN" | "ADMIN" | "USER" | "DELIVERY_PARTNER";
     is_active: boolean;
     created_at: number;
     updated_at: number;
@@ -208,6 +218,48 @@ export type TProfile = {
 export type TProfileUpdateResponse = {
     message: string;
     data: TProfile;
+};
+
+// ── Deliveries ────────────────────────────────────────────────────────────────
+
+export type TDeliveryStatus =
+    | "PICKUP_SCHEDULED"
+    | "OUT_FOR_DELIVERY"
+    | "DELIVERED"
+    | "FAILED"
+    | "RETURNED";
+
+export type TDelivery = {
+    id: string;
+    order_id: string;
+    status: TDeliveryStatus;
+    carrier: string | null;
+    tracking_number: string | null;
+    assigned_to: string | null;
+    estimated_at: number | null;
+    delivered_at: number | null;
+    created_at: number;
+    updated_at: number;
+};
+
+export type TTrackingEvent = {
+    id: string;
+    delivery_id: string;
+    status: TDeliveryStatus;
+    message: string;
+    location: string;
+    timestamp: number;
+};
+
+export type TDeliveriesResponse = {
+    has_more: boolean;
+    object: "list" | null;
+    data: TDelivery[];
+    ending_before: number | null;
+};
+
+export type TDeliveryDetail = TDelivery & {
+    tracking_events: TTrackingEvent[];
 };
 
 // ── Dashboard ─────────────────────────────────────────────────────────────────

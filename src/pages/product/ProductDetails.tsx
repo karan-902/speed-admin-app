@@ -5,7 +5,7 @@ import {
     useState,
     type MouseEvent,
 } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Box from "../../components/common/Box/Box";
 import Text from "../../components/common/Text/Text";
 import { useReduxDispatch, useReduxSelector } from "../../redux/hooks";
@@ -18,7 +18,7 @@ import { setProduct, updateProduct } from "../../redux/product/product.slice";
 import type { TProductDetail } from "../../utils/utils";
 import Button from "../../components/common/Button/Button";
 import Breadcrumbs from "../../components/common/Breadcrumb/Breadcrumb";
-import Link from "../../components/common/Link/Link";
+
 import { buttonIcons } from "../../components/images";
 import Switch from "../../components/common/Switch/Switch";
 import type { TProductArchivePayload } from "../../types";
@@ -32,6 +32,7 @@ import { productMenu } from "../../components/config";
 
 function ProductDetails() {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const dispatch = useReduxDispatch();
     const product = useReduxSelector((state) => state.product.selectedProduct);
     const [isLoading, setIsLoading] = useState(true);
@@ -80,8 +81,8 @@ function ProductDetails() {
             const response = await callAPIInterface<
                 { spotlight: boolean },
                 TProductDetail
-            >("PATCH", `/products/${detailsObj.id}/spotlight`, {
-                spotlight: !detailsObj?.spotlight,
+            >("PATCH", `/products/${product?.id}/spotlight`, {
+                spotlight: !product?.spotlight,
             });
             dispatch(updateProduct(response));
         } catch (error) {
@@ -89,7 +90,7 @@ function ProductDetails() {
         } finally {
             setIsLoading(false);
         }
-    }, [detailsObj.spotlight]);
+    }, [product?.spotlight]);
     const onArchive = useCallback(async () => {
         if (!detailsObj || disabled) return;
         setDisabled(true);
@@ -99,8 +100,8 @@ function ProductDetails() {
             const res = await callAPIInterface<
                 TProductArchivePayload,
                 TProductDetail
-            >("PATCH", `/products/${detailsObj?.id}/archive`, {
-                visibility: detailsObj.visibility,
+            >("PATCH", `/products/${product?.id}/archive`, {
+                visibility: product?.visibility,
             });
             console.log(res);
             dispatch(updateProduct(res));
@@ -111,7 +112,7 @@ function ProductDetails() {
             setIsLoading(false);
             closeArchive();
         }
-    }, [detailsObj.visibility]);
+    }, [product?.visibility]);
     useEffect(() => {
         if (!id) return;
         setIsLoading(true);
@@ -133,12 +134,12 @@ function ProductDetails() {
                     ) : (
                         <>
                             <Breadcrumbs component={"ol"} separator="›">
-                                <Link
+                                <Box
                                     customClass="breadcrumb-link"
-                                    to="/products"
+                                    onClick={() => navigate(-1)}
                                 >
                                     Products
-                                </Link>
+                                </Box>
                                 <Text customClass="grey-text font14">
                                     Details
                                 </Text>
@@ -169,9 +170,7 @@ function ProductDetails() {
                                 />
                             ) : (
                                 <>
-                                    {detailsObj &&
-                                    !isLoading &&
-                                    detailsObj.visibility ? (
+                                    {detailsObj && detailsObj.visibility ? (
                                         <Box
                                             gap={1}
                                             customClass="flex items-center"

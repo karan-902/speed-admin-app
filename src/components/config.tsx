@@ -43,6 +43,30 @@ export const orderStatusTabs: CommonTab[] = [
     { label: "Cancelled", value: "CANCELLED" },
 ];
 
+export const deliveryStatusTabs: CommonTab[] = [
+    { label: "All", value: "all" },
+    { label: "Pickup Scheduled", value: "PICKUP_SCHEDULED" },
+    { label: "Out for Delivery", value: "OUT_FOR_DELIVERY" },
+    { label: "Delivered", value: "DELIVERED" },
+    { label: "Failed", value: "FAILED" },
+    { label: "Returned", value: "RETURNED" },
+];
+
+export const DELIVERY_STATUS_OPTIONS = [
+    { value: "PICKUP_SCHEDULED", label: "Pickup Scheduled" },
+    { value: "OUT_FOR_DELIVERY", label: "Out for Delivery" },
+    { value: "DELIVERED", label: "Delivered" },
+    { value: "FAILED", label: "Failed" },
+    { value: "RETURNED", label: "Returned" },
+];
+
+export const USER_ROLE_OPTIONS = [
+    { value: "SUPER_ADMIN", label: "Super Admin" },
+    { value: "ADMIN", label: "Admin" },
+    { value: "USER", label: "User" },
+    { value: "DELIVERY_PARTNER", label: "Delivery Partner" },
+];
+
 export const productMenu = (onArchive: () => void, onEdit: () => void) => {
     return [
         { label: "Archive", onClick: onArchive },

@@ -8,7 +8,7 @@ import { setCategories } from "../redux/category/category.slice";
 import Sidebar from "../components/common/Sidebar";
 import Header from "../components/Header";
 
-function ProtectRoute() {
+function PrivateRoute() {
     const session = useReduxSelector((state) => state.auth.session);
     const dispatch = useReduxDispatch();
     if (!session?.access_token) return <Navigate to="/login" replace />;
@@ -34,4 +34,4 @@ function ProtectRoute() {
     );
 }
 
-export default ProtectRoute;
+export default PrivateRoute;

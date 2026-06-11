@@ -12,12 +12,15 @@ export type RevenueResponse = {
     points: RevenuePoint[];
 };
 
+export type TUserRole = "SUPER_ADMIN" | "ADMIN" | "USER" | "DELIVERY_PARTNER";
+
 export type TCreateAdmin = {
     email: string;
     password: string;
     first_name: string;
     last_name: string;
     phone?: number;
+    role: TUserRole;
 };
 
 export type TLoginPayload = {
@@ -56,7 +59,7 @@ export type TProductPayload = {
 
 export type TProductArchivePayload = {
     id?: string;
-    visibility: boolean;
+    visibility?: boolean;
 };
 export type TProductSpotlightPayload = {
     id?: string;
@@ -81,3 +84,22 @@ export type TProductsList = {
     updated_at: number;
 };
 export type TCloudinaryResponse = { secure_url: string; public_id: string };
+
+export type TCreateDeliveryPayload = {
+    order_id: string;
+    estimated_at: number;
+};
+
+export type TUpdateDeliveryPayload = {
+    carrier?: string;
+    tracking_number?: string;
+    assigned_to?: string;
+    estimated_at?: number;
+    status?: string;
+};
+
+export type TAddTrackingEventPayload = {
+    status: string;
+    message: string;
+    location: string;
+};

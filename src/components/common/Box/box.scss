@@ -3,6 +3,11 @@
     &.flex-col {
         flex-direction: column;
     }
+    &.breadcrumb-link {
+        font-family: $fontOutfitRegular;
+        font-size: 14px;
+        color: $primaryBlue;
+    }
     &.justify-center {
         justify-content: center;
     }
@@ -126,6 +131,8 @@
     &.section-container {
         width: calc(100% - 250px);
         border-left: 1px solid #f2f5f7;
+        height: 100%;
+        overflow-y: auto;
     }
     &.auth-section-container {
         width: 100%;
@@ -314,6 +321,9 @@
     }
     &.items-center {
         align-items: center;
+    }
+    &.gap-xs {
+        gap: 4px;
     }
     &.flex-col {
         flex-direction: column;
@@ -538,5 +548,168 @@
             margin-top: 18px;
             align-items: start;
         }
+        &.details-content-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        &.delivery-section-header {
+            margin-bottom: 16px;
+        }
+        &.delivery-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        &.delivery-fields-row {
+            display: flex;
+            gap: 24px;
+        }
+        &.delivery-field-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        &.tracking-history-wrapper {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        &.tracking-events-list {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        &.tracking-event-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e4e9ee;
+            background: #f7fafc;
+        }
+        &.tracking-event-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        &.tracking-no-events {
+            margin-top: 12px;
+        }
+        &.delivery-info-rows {
+            display: flex;
+            flex-direction: column;
+            margin-top: 16px;
+        }
+        &.delivery-info-row {
+            display: flex;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid $lightCyanBlue;
+            gap: 12px;
+            &:last-child { border-bottom: none; }
+        }
+        &.delivery-row-icon {
+            color: $greyText;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        &.delivery-row-label {
+            flex: 1;
+        }
+        &.delivery-row-value-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        &.delivery-action-footer {
+            display: flex;
+            gap: 10px;
+            padding-top: 20px;
+            border-top: 1px solid $lightCyanBlue;
+            flex-wrap: wrap;
+        }
+        &.user-form-name-row {
+            gap: 16px;
+            margin-top: 8px;
+        }
+        &.user-form-half {
+            flex: 1;
+        }
+        &.update-delivery-form {
+            margin-top: 8px;
+        }
+    }
+
+    &.status-screen {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background:
+            radial-gradient(
+                circle at 18% 22%,
+                rgba($primaryBlue, 0.1),
+                transparent 42%
+            ),
+            radial-gradient(
+                circle at 82% 78%,
+                rgba($primaryOrang, 0.08),
+                transparent 42%
+            ),
+            $paleGray;
+    }
+    &.status-card {
+        width: 100%;
+        max-width: 460px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: $white;
+        border: 1px solid $lightCyanBlue;
+        border-radius: 22px;
+        padding: 48px 40px;
+        box-shadow:
+            0 1px 2px rgba($darkIndigo, 0.04),
+            0 24px 60px rgba($darkIndigo, 0.1);
+    }
+    &.status-icon {
+        width: 84px;
+        height: 84px;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+        animation: status-float 3s ease-in-out infinite;
+
+        &.icon-info {
+            background: $aliceBlue;
+            color: $primaryBlue;
+            box-shadow: 0 10px 24px rgba($primaryBlue, 0.18);
+        }
+        &.icon-danger {
+            background: $errorBg;
+            color: $error;
+            box-shadow: 0 10px 24px rgba($error, 0.16);
+        }
+    }
+}
+
+@keyframes status-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
     }
 }

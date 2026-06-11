@@ -146,10 +146,10 @@ export default function ProductForm({
 
     const modalTitle = isEditMode ? "Edit Product" : "Add Product";
     const modalClass = isEditMode
-        ? "product-edit-modal"
+        ? "product-edit-modal fullscreen-modal"
         : "product-create-modal fullscreen-modal";
     const modalActionLabel: "Save" | "Add" = isEditMode ? "Save" : "Add";
-    const modalVariant = isEditMode ? "default" : "fullscreen";
+    const modalVariant = "fullscreen" as const;
     const onAction = async (values: TProductForm) => {
         onDisabled?.(true);
         try {

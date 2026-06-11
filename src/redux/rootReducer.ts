@@ -5,6 +5,7 @@ import { productReducer } from "./product/product.slice";
 import { ordersReducer } from "./orders/orders.slice";
 import { usersReducer } from "./users/users.slice";
 import commonReducer from "./common/common.slice";
+import { deliveryReducer } from "./delivery/delivery.slice";
 
 export const commonReducers = {
     category: CategoryReducer,
@@ -14,4 +15,5 @@ export const commonReducers = {
     orders: ordersReducer,
     users: usersReducer,
     common: commonReducer,
+    delivery: deliveryReducer,
 };

@@ -1,47 +1,49 @@
 @use "../../../assets/default.scss" as *;
 .common-select-wrapper {
-  width: 100%;
-  height: 60px;
-  position: relative;
-  background-color: #fff;
-  margin-bottom: 12px;
-  box-shadow:
-    0 4px 4px -2px rgba(11, 37, 75, 0.12),
-    0 0 0 1px rgba(11, 37, 75, 0.08);
-  &.modal-select {
-    width: 500px;
-  }
-  .MuiSelect-select {
-    font-family: $fontOutfitSemiBold;
-    font-size: 15px;
-    color: $darkIndigo;
-  }
-  .MuiSelect-icon {
-    color: $greyText;
-    font-size: 22px;
-    right: 14px;
-    transition: transform 0.2s ease;
-  }
-  .MuiSelect-iconOpen {
-    transform: rotate(180deg);
-  }
-  &.Mui-selected {
-    background-color: #f7fafc;
-  }
-  &.Mui-focused {
-    outline: 3px solid $outlineBlue;
-  }
-  &.MuiOutlinedInput-root {
-    .MuiOutlinedInput-notchedOutline {
-      border: none !important;
+    width: 100%;
+    height: 60px;
+    position: relative;
+    background-color: #fff;
+    margin-bottom: 12px;
+    box-shadow:
+        0 4px 4px -2px rgba(11, 37, 75, 0.12),
+        0 0 0 1px rgba(11, 37, 75, 0.08);
+    &.modal-select {
+        width: 500px;
     }
+    .MuiSelect-select {
+        font-family: $fontOutfitSemiBold;
+        font-size: 15px;
+        color: $darkIndigo;
+    }
+    .MuiSelect-icon {
+        color: $greyText;
+        font-size: 22px;
+        right: 14px;
+        transition: transform 0.2s ease;
+    }
+    .MuiSelect-iconOpen {
+        transform: rotate(180deg);
+    }
+    &.Mui-selected {
+        background-color: #f7fafc;
+    }
+    &.Mui-focused {
+        border: none;
+        outline: 3px solid $darkIndigo;
+        border-radius: 4px;
+    }
+    &.MuiOutlinedInput-root {
+        .MuiOutlinedInput-notchedOutline {
+            border: none !important;
+        }
 
-    &:hover .MuiOutlinedInput-notchedOutline {
-      border: none !important;
-    }
+        &:hover .MuiOutlinedInput-notchedOutline {
+            border: none !important;
+        }
 
-    &.Mui-focused .MuiOutlinedInput-notchedOutline {
-      border: none !important;
+        &.Mui-focused .MuiOutlinedInput-notchedOutline {
+            border: none !important;
+        }
     }
-  }
 }

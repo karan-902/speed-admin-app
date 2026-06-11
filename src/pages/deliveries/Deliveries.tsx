@@ -3,50 +3,55 @@ import { useNavigate } from "react-router-dom";
 import EntityListPage from "../../components/common/EntityListPage";
 import EntityList from "../../components/common/EntityList";
 import ColumnsTableHeader from "../../components/common/ColumnsTableHeader";
-import { orderColumns } from "../../components/columns";
+import { deliveryColumns } from "../../components/columns";
 import { usePaginatedList } from "../../hooks/usePaginatedList";
 import { useEntityList } from "../../hooks/useEntityList";
 import {
-    ordersPageDescription,
-    ordersPageTitle,
+    deliveriesPageTitle,
+    deliveriesPageDescription,
 } from "../../components/messages";
 import { useReduxDispatch, useReduxSelector } from "../../redux/hooks";
-import { appendOrders, setOrders } from "../../redux/orders/orders.slice";
-import type { TOrder, TOrderStatus } from "../../utils/utils";
-import { orderStatusTabs } from "../../components/config";
+import {
+    appendDeliveries,
+    setDeliveries,
+} from "../../redux/delivery/delivery.slice";
+import type { TDelivery, TDeliveryStatus } from "../../utils/utils";
+import { deliveryStatusTabs } from "../../components/config";
 
 const LIMIT = 20;
 
-function Orders() {
+function Deliveries() {
     const { tabValue, tabRef, loading, setLoading, onTabChange } =
         useEntityList();
-    const orders = useReduxSelector((state) => state.orders.list);
+    const deliveries = useReduxSelector((state) => state.delivery.list);
     const dispatch = useReduxDispatch();
     const navigate = useNavigate();
 
-    const { load, reset, hasMoreRef } = usePaginatedList<TOrder>({
+    const { load, reset, hasMoreRef } = usePaginatedList<TDelivery>({
         method: "GET",
         buildPath: (cursor) => {
             const status = tabRef.current;
             const statusParam =
-                status !== "all" ? `&status=${status as TOrderStatus}` : "";
-            return `/orders?limit=${LIMIT}${statusParam}${cursor}`;
+                status !== "all" ? `&status=${status as TDeliveryStatus}` : "";
+            return `/deliveries?limit=${LIMIT}${statusParam}${cursor}`;
         },
-        onFirstLoad: (data) => dispatch(setOrders(data)),
-        onAppend: (data) => dispatch(appendOrders(data)),
+        onFirstLoad: (data) => dispatch(setDeliveries(data)),
+        onAppend: (data) => dispatch(appendDeliveries(data)),
         setLoading,
     });
 
     useEffect(() => {
-        dispatch(setOrders([]));
+        dispatch(setDeliveries([]));
         reset();
         load(true);
     }, [tabValue]);
 
     return (
         <EntityListPage
-            entity={ordersPageTitle}
-            description={ordersPageDescription}
+            entity={deliveriesPageTitle}
+            buttonLabel=""
+            description={deliveriesPageDescription}
+            onSubmit={() => {}}
         >
             <EntityList
                 hasMore={hasMoreRef.current}
@@ -54,14 +59,14 @@ function Orders() {
                 loading={loading}
                 tabValue={tabValue}
                 onChange={onTabChange}
-                tabs={orderStatusTabs}
-                columns={orderColumns}
-                header={() => <ColumnsTableHeader columns={orderColumns} />}
-                list={orders}
-                onRowClick={(id) => navigate(`/orders/${id}`)}
+                tabs={deliveryStatusTabs}
+                columns={deliveryColumns}
+                header={() => <ColumnsTableHeader columns={deliveryColumns} />}
+                list={deliveries}
+                onRowClick={(id) => navigate(`/deliveries/${id}`)}
             />
         </EntityListPage>
     );
 }
 
-export default Orders;
+export default Deliveries;

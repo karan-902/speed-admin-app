@@ -58,8 +58,8 @@ export default function Header() {
             <Container maxWidth="xl">
                 <AppBar toolbarClass="header-content" component={"header"}>
                     <Box customClass="flex items-center">
-                        <img src={logo} alt="ecommerce-logo" />
-                        <Text font="semiBold" ml={1} customClass="font14">
+                        <img src={logo} sizes="50" alt="ecommerce-logo" />
+                        <Text font="semiBold" ml={1} customClass="font18">
                             {logoNameForAdmin}
                         </Text>
                     </Box>

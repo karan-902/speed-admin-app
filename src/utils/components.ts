@@ -81,6 +81,7 @@ export type TProductColumns = {
     id: string;
     name: string;
     price: number;
+    stock: number;
     visibility: boolean;
     created_at: number;
     updated_at: number;
@@ -186,6 +187,16 @@ export type CommonTab = { label: string; value: string };
 export type TLoginForm = {
     email: string;
     password: string;
+};
+
+export type TDeliveryColumns = {
+    id: string;
+    order_id: string;
+    status: string;
+    carrier: string | null;
+    tracking_number: string | null;
+    estimated_at: number | null;
+    created_at: number;
 };
 
 export type TCommonFilter = {

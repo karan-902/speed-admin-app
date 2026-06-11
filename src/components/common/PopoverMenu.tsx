@@ -39,6 +39,7 @@ export default function PopoverMenu({
             <List>
                 {data.map((item) => (
                     <MenuItem
+                        key={item.key}
                         onClick={() => {
                             onAction(item.key);
                             onClose();

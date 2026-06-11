@@ -38,7 +38,6 @@
     }
 }
 
-
 .table {
     &.data-table {
         table-layout: fixed;
@@ -48,7 +47,7 @@
             background: #fff;
             height: 50px;
             transition: background-color 0.15s ease;
-            border-bottom: 1px solid #f2f5f7;
+            // border-bottom: 1px solid #f2f5f7;
             &.empty-row {
                 cursor: default;
                 &:hover {
@@ -64,6 +63,7 @@
             color: #0a193e;
             font-size: 16px;
             font-family: Outfit-Regular;
+            border-bottom: none;
         }
         .MuiTableCell-root {
             color: #0a193e;
